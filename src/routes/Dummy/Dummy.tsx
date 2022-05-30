@@ -1,108 +1,20 @@
-import React from 'react'
+import ListItem from 'components/ListItem/ListItem'
+import React, { useEffect } from 'react'
+import { useQuery } from 'react-query'
+import { useParams } from 'react-router-dom'
+import { useLocation } from 'react-use'
+import getStoreApi from 'services/getStoreApi'
 import styles from './dummy.module.scss'
 
 const Dummy = () => {
+  const { category } = useParams()
+  console.log(category)
+  const { data } = useQuery(['bringStoreInfo', category], () => getStoreApi(category))
+  console.log(data)
+
   return (
     <ul className={styles.shopContents}>
-      <li>
-        <div className={styles.itemImg}>이미지였으면 좋겠네</div>
-        <dl>
-          <dt>제품명</dt>
-          <dd>버터쿠키</dd>
-          <dt>가격</dt>
-          <dd>10000</dd>
-        </dl>
-      </li>
-      <li>
-        <div className={styles.itemImg}>이미지였으면 좋겠네</div>
-        <dl>
-          <dt>제품명</dt>
-          <dd>버터쿠키</dd>
-          <dt>가격</dt>
-          <dd>10000</dd>
-        </dl>
-      </li>
-      <li>
-        <div className={styles.itemImg}>이미지였으면 좋겠네</div>
-        <dl>
-          <dt>제품명</dt>
-          <dd>버터쿠키</dd>
-          <dt>가격</dt>
-          <dd>10000</dd>
-        </dl>
-      </li>
-      <li>
-        <div className={styles.itemImg}>이미지였으면 좋겠네</div>
-        <dl>
-          <dt>제품명</dt>
-          <dd>버터쿠키</dd>
-          <dt>가격</dt>
-          <dd>10000</dd>
-        </dl>
-      </li>
-      <li>
-        <div className={styles.itemImg}>이미지였으면 좋겠네</div>
-        <dl>
-          <dt>제품명</dt>
-          <dd>버터쿠키</dd>
-          <dt>가격</dt>
-          <dd>10000</dd>
-        </dl>
-      </li>
-      <li>
-        <div className={styles.itemImg}>이미지였으면 좋겠네</div>
-        <dl>
-          <dt>제품명</dt>
-          <dd>버터쿠키</dd>
-          <dt>가격</dt>
-          <dd>10000</dd>
-        </dl>
-      </li>
-      <li>
-        <div className={styles.itemImg}>이미지였으면 좋겠네</div>
-        <dl>
-          <dt>제품명</dt>
-          <dd>버터쿠키</dd>
-          <dt>가격</dt>
-          <dd>10000</dd>
-        </dl>
-      </li>
-      <li>
-        <div className={styles.itemImg}>이미지였으면 좋겠네</div>
-        <dl>
-          <dt>제품명</dt>
-          <dd>버터쿠키</dd>
-          <dt>가격</dt>
-          <dd>10000</dd>
-        </dl>
-      </li>
-      <li>
-        <div className={styles.itemImg}>이미지였으면 좋겠네</div>
-        <dl>
-          <dt>제품명</dt>
-          <dd>버터쿠키</dd>
-          <dt>가격</dt>
-          <dd>10000</dd>
-        </dl>
-      </li>
-      <li>
-        <div className={styles.itemImg}>이미지였으면 좋겠네</div>
-        <dl>
-          <dt>제품명</dt>
-          <dd>버터쿠키</dd>
-          <dt>가격</dt>
-          <dd>10000</dd>
-        </dl>
-      </li>
-      <li>
-        <div className={styles.itemImg}>이미지였으면 좋겠네</div>
-        <dl>
-          <dt>제품명</dt>
-          <dd>버터쿠키</dd>
-          <dt>가격</dt>
-          <dd>10000</dd>
-        </dl>
-      </li>
+      {/* {data && data.map((d: IListData) => <ListItem key={`dummy-${d.id}`} listItem={d} />)} */}
     </ul>
   )
 }

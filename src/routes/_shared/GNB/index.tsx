@@ -12,26 +12,31 @@ const GNB = () => {
         <h1>로고가 들어가면 좋겠네</h1>
       </div>
       <ul>
-        <li>
-          <NavLink to='dummy1' type='button'>
-            카테고리1
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='dummy2' type='button'>
-            카테고리2
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='dummy3' type='button'>
-            카테고리3
-          </NavLink>
-        </li>
         {/* <li>
-          <NavLink to='dummy4' type='button'>
-            카테고리4
+          <NavLink to='dummy1' type='button'>
+            All
           </NavLink>
         </li> */}
+        <li>
+          <NavLink to='women' type='button'>
+            WOMEN
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to='men' type='button'>
+            MEN
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to='electronics' type='button'>
+            ELECTRONICS
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to='jewelery' type='button'>
+            JEWELERY
+          </NavLink>
+        </li>
       </ul>
       <div className={styles.rightWing}>
         <button type='button' className={styles.theme}>
