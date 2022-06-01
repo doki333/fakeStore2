@@ -1,13 +1,16 @@
-interface IListData {
-  category: string
+export interface IStoreData {
+  category: {
+    id: number
+    image: string
+    name: string
+  }
   description: string
   id: number
-  image: string
+  images: string[]
+  length: number
   price: number
-  rating: { count: number; rate: number }
   title: string
 }
-
 // category: string
 // description: string
 // id: number

@@ -1,11 +1,14 @@
-import React from 'react'
-import { Outlet } from 'react-router-dom'
+import useThrottleCallback from 'hooks/useThrottleCallback'
+import React, { RefObject, UIEvent, useCallback, useEffect, useRef } from 'react'
+import { Outlet, useParams } from 'react-router-dom'
 import styles from './layout.module.scss'
 
 const Layout = () => {
+  const { category } = useParams()
+  const upperCategory = category && category.replace(category[0], category[0].toUpperCase())
   return (
     <main className={styles.mainWrapper}>
-      <h1>카테고리면 좋겠네...</h1>
+      <h1>{category ? upperCategory : 'All'}</h1>
       <Outlet />
     </main>
   )

@@ -3,13 +3,14 @@ import store from 'store'
 import { NavLink } from 'react-router-dom'
 import styles from './gnb.module.scss'
 
-import { useEffect, useI18n, useState } from 'hooks'
+import { useEffect, useState } from 'hooks'
 
 const GNB = () => {
   return (
     <header className={styles.gnb}>
       <div className={styles.leftWing}>
-        <h1>로고가 들어가면 좋겠네</h1>
+        <h1>F</h1>
+        <h1>S</h1>
       </div>
       <ul>
         {/* <li>
@@ -18,24 +19,16 @@ const GNB = () => {
           </NavLink>
         </li> */}
         <li>
-          <NavLink to='women' type='button'>
-            WOMEN
-          </NavLink>
+          <NavLink to='clothes'>Clothes</NavLink>
         </li>
         <li>
-          <NavLink to='men' type='button'>
-            MEN
-          </NavLink>
+          <NavLink to='electronics'>Electronics</NavLink>
         </li>
         <li>
-          <NavLink to='electronics' type='button'>
-            ELECTRONICS
-          </NavLink>
+          <NavLink to='furniture'>Furniture</NavLink>
         </li>
         <li>
-          <NavLink to='jewelery' type='button'>
-            JEWELERY
-          </NavLink>
+          <NavLink to='shoes'>Shoes</NavLink>
         </li>
       </ul>
       <div className={styles.rightWing}>
