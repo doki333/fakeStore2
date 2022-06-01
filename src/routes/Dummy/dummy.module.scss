@@ -1,5 +1,8 @@
-.shopContents {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+@use '/src/styles/constants/colors';
+
+.loadingBlock {
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: 700;
+  color: colors.$FS_MAIN_YELLOW;
 }

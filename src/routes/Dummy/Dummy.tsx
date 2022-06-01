@@ -1,35 +1,34 @@
-import ItemList from 'components/ItemList/ItemList'
-import ListItem from 'components/ItemList/ListItem/ListItem'
-import { axios } from 'hooks/worker'
-import React, { useCallback, useEffect } from 'react'
-import { QueryFunctionContext, useInfiniteQuery, useQuery } from 'react-query'
-import { useParams } from 'react-router-dom'
-import { useLocation } from 'react-use'
-import getMoreData from 'services/getMoreData'
-import { IStoreData } from 'types/ListItem'
-import styles from './dummy.module.scss'
+import { useEffect } from 'react'
+import { useInfiniteQuery } from 'react-query'
 import { useInView } from 'react-intersection-observer'
+import { useParams } from 'react-router-dom'
+
+import ItemList from 'components/ItemList/ItemList'
 import Spinner from 'components/Spinner/Spinner'
+import getMoreItemData from 'services/getMoreItemData'
+import { IStoreData, ICateData } from 'types/ListItem'
+
+import styles from './dummy.module.scss'
+
+const categoryCode: ICateData = {
+  clothes: 1,
+  electronics: 2,
+  furniture: 3,
+  shoes: 4,
+  others: 5,
+}
 
 const Dummy = () => {
   const { ref, inView } = useInView()
-  // const { category } = useParams()
-  const {
-    fetchPreviousPage,
-    hasNextPage,
-    hasPreviousPage,
-    isLoading,
-    isFetching,
-    isError,
-    data,
-    fetchNextPage,
-    isFetchingNextPage,
-  } = useInfiniteQuery<IStoreData[], Error>(['#getMoreStoreItems'], getMoreData, {
-    getNextPageParam: (_lastPage, pages) => {
-      if (pages.length === 11) {
-        return undefined
-      }
+  const { category } = useParams()
+  const cateId = category ? categoryCode[category] : null
 
+  const { hasNextPage, isLoading, isError, data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery<
+    IStoreData[],
+    Error
+  >(['#getMoreStoreItems', cateId], ({ pageParam = 0 }) => getMoreItemData({ pageParam, code: cateId }), {
+    getNextPageParam: (_lastPage, pages) => {
+      if (_lastPage.length === 0) return undefined
       return pages.length * 20
     },
     refetchOnWindowFocus: false,
@@ -37,20 +36,26 @@ const Dummy = () => {
   })
 
   useEffect(() => {
-    if (inView) {
+    if (inView && hasNextPage) {
       fetchNextPage()
     }
-  }, [fetchNextPage, inView])
+  }, [fetchNextPage, hasNextPage, inView])
 
   return (
     <>
       {isLoading && <Spinner />}
       <div>
         {data &&
-          data.pages &&
-          data.pages.map((d, index) => <ItemList key={`shopList-${index * Math.random()}`} itemData={d} />)}
+          data.pages.map((d, index) => {
+            const randomKey = index * Math.random()
+            return <ItemList key={`shopList-${randomKey}`} itemData={d} />
+          })}
       </div>
-      {data && <div ref={ref}>{isFetchingNextPage ? <Spinner /> : 'Nothing more to load!'}</div>}
+      {data && (
+        <div className={styles.loadingBlock} ref={ref}>
+          {isFetchingNextPage && hasNextPage ? <Spinner /> : 'Nothing more to load!'}
+        </div>
+      )}
     </>
   )
 }

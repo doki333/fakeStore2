@@ -1,7 +1,7 @@
 import React from 'react'
 import { IStoreData } from 'types/ListItem'
-import styles from './itemList.module.scss'
 import ListItem from './ListItem/ListItem'
+import styles from './itemList.module.scss'
 
 interface IProps {
   itemData: IStoreData[]

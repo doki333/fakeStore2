@@ -1,6 +1,8 @@
 @use '/src/styles/constants/colors';
 
 .spinnerWrapper {
+  z-index: -1;
+
   span {
     display: inline-block;
     width: 20px;

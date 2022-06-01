@@ -1,11 +1,19 @@
 import axios from 'axios'
 import { QueryFunctionContext } from 'react-query'
 
+interface IProps {
+  pageParam: QueryFunctionContext
+  code: number | null
+}
+
 const PROXY = window.location.hostname === 'localhost' ? '/api/v1' : '/proxy'
 
-const getMoreData = async ({ pageParam = 0 }: QueryFunctionContext) => {
+// /categories/1/products?offset=10&limit=10
+
+const getMoreItemData = async ({ pageParam, code }: IProps) => {
+  const prevAddr = code === null ? '' : `/categories/${code}`
   const response = await axios
-    .get(`${PROXY}/products?offset=${pageParam}&limit=20`)
+    .get(`${PROXY}${prevAddr}/products?offset=${pageParam}&limit=20`)
     .then((res) => {
       return res.data
     })
@@ -18,4 +26,4 @@ const getMoreData = async ({ pageParam = 0 }: QueryFunctionContext) => {
   return response
 }
 
-export default getMoreData
+export default getMoreItemData

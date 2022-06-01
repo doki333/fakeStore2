@@ -1,44 +1,66 @@
-import store from 'store'
-
 import { NavLink } from 'react-router-dom'
-import styles from './gnb.module.scss'
 
 import { useEffect, useState } from 'hooks'
+import { CartIcon, MenuIcon } from 'assets/svgs'
+
+import { cx } from 'styles'
+import styles from './gnb.module.scss'
+
+const linkList = ['clothes', 'electronics', 'furniture', 'shoes']
 
 const GNB = () => {
+  const currentStatus = window.innerWidth < 600
+  const [isMobile, setIsMobile] = useState(currentStatus)
+  const [isVisible, setIsVisible] = useState(false)
+
+  const handleClickMenu = () => {
+    setIsVisible((prev) => !prev)
+  }
+
+  const resizeWindow = () => {
+    if (window.innerWidth < 600) {
+      setIsMobile(true)
+      return
+    }
+    setIsMobile(false)
+  }
+
+  useEffect(() => {
+    window.addEventListener('resize', resizeWindow)
+    return () => window.removeEventListener('resize', resizeWindow)
+  }, [])
+
   return (
     <header className={styles.gnb}>
       <div className={styles.leftWing}>
         <h1>F</h1>
         <h1>S</h1>
       </div>
-      <ul>
-        {/* <li>
-          <NavLink to='dummy1' type='button'>
-            All
-          </NavLink>
-        </li> */}
-        <li>
-          <NavLink to='clothes'>Clothes</NavLink>
-        </li>
-        <li>
-          <NavLink to='electronics'>Electronics</NavLink>
-        </li>
-        <li>
-          <NavLink to='furniture'>Furniture</NavLink>
-        </li>
-        <li>
-          <NavLink to='shoes'>Shoes</NavLink>
-        </li>
-      </ul>
+      <nav className={styles.navLinkWrapper}>
+        <ul className={cx(styles.linkWrapper, { [styles.isNotVisible]: !isVisible })}>
+          {linkList.map((link) => (
+            <li key={`linkItem-${link}`}>
+              <NavLink
+                to={link}
+                className={({ isActive }) => (isActive ? styles.isActive : styles.linkBlock)}
+                onClick={handleClickMenu}
+              >
+                {link}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </nav>
       <div className={styles.rightWing}>
-        <button type='button' className={styles.theme}>
-          장바구니..
-        </button>
-        <button type='button' className={styles.language}>
-          프로필..
+        <button type='button' className={styles.cart}>
+          <CartIcon />
         </button>
       </div>
+      {isMobile && (
+        <button type='button' onClick={handleClickMenu} className={styles.mobileMenu}>
+          <MenuIcon />
+        </button>
+      )}
     </header>
   )
 }

@@ -1,5 +1,3 @@
-import useThrottleCallback from 'hooks/useThrottleCallback'
-import React, { RefObject, UIEvent, useCallback, useEffect, useRef } from 'react'
 import { Outlet, useParams } from 'react-router-dom'
 import styles from './layout.module.scss'
 

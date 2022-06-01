@@ -9,7 +9,6 @@ interface IProps {
 
 const ListItem = ({ itemProps }: IProps) => {
   const isImgEmpty = itemProps.images[0].length === 0 || !itemProps.images[0].includes('https')
-  // console.log(itemProps.images[0].length)
   return (
     <li className={styles.itemWrapper}>
       <div>
