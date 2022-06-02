@@ -1,0 +1,167 @@
+@use '/src/styles/mixins/position';
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/responsive';
+
+.cartListItem {
+  display: flex;
+  justify-content: center;
+
+  .inputBoxWrapper {
+    position: relative;
+    margin: auto 0;
+    margin-right: 40px;
+
+    input[type='checkbox'] {
+      width: 25px;
+      height: 25px;
+      border-radius: 2px;
+      outline: 2px solid colors.$GRAY2;
+
+      & + label {
+        position: absolute;
+        left: 5px;
+        visibility: hidden;
+      }
+
+      &:checked {
+        background: colors.$FS_SECOND_YELLOW;
+
+        & + label {
+          svg {
+            position: absolute;
+            top: 2px;
+            left: -2px;
+            width: 20px;
+            height: 20px;
+            color: colors.$GRAY2;
+            pointer-events: none;
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
+
+  .itemName {
+    width: 80%;
+    padding-bottom: 15px;
+    font-size: 28px;
+    text-align: center;
+    border-bottom: 2px solid colors.$FS_MAIN_YELLOW;
+  }
+
+  .imgWrapper {
+    position: relative;
+    width: 200px;
+    height: 200px;
+
+    img {
+      width: 200px;
+      height: 200px;
+    }
+
+    span {
+      position: absolute;
+      right: 0;
+      width: 20px;
+      padding: 5px;
+      text-align: center;
+      word-wrap: break-word;
+      background: colors.$FS_MAIN_YELLOW;
+    }
+  }
+
+  .nameInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .plusAndMinus {
+      display: flex;
+
+      p {
+        width: 100px;
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 88px;
+        text-align: center;
+      }
+
+      button {
+        svg {
+          width: 40px;
+          height: 40px;
+        }
+        font-size: 60px;
+        font-weight: 300;
+        text-align: center;
+      }
+
+      span {
+        display: block;
+      }
+    }
+  }
+
+  & + & {
+    margin-top: 15px;
+  }
+}
+
+@include responsive.between(M, ML) {
+  .cartListItem {
+    width: 100%;
+    height: 125px;
+    margin-right: 0;
+
+    .nameInfo {
+      width: 100%;
+      margin-right: 20px;
+
+      .itemName {
+        padding-bottom: 10px;
+        font-size: 18px;
+        text-align: center;
+      }
+
+      .plusAndMinus {
+        height: 70px;
+
+        p {
+          font-size: 20px;
+          line-height: 70px;
+        }
+
+        button {
+          svg {
+            width: 30px;
+            height: 30px;
+          }
+          display: block;
+          font-weight: 300;
+          line-height: 20px;
+          text-align: center;
+        }
+      }
+    }
+
+    .inputBoxWrapper {
+      position: relative;
+      margin: auto 0;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+
+    .imgWrapper {
+      width: 125px;
+      height: 125px;
+      margin-right: 10px;
+
+      img {
+        width: 125px;
+        height: 125px;
+      }
+    }
+  }
+}

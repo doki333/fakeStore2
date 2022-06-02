@@ -1,11 +1,7 @@
-import engine from 'store/src/store-engine'
-import storage from 'store/storages/sessionStorage'
+import { newStore } from 'services/sessionStore'
 import { ICartData, IStoreData } from 'types/ListItem'
 
-const newStore = engine.createStore([storage])
-
 const handleClickItemAdd = (itemProps: IStoreData, itemCount: number) => {
-  // const initialArr = []
   const isImgEmpty = itemProps.images[0].length === 0 || !itemProps.images[0].includes('https')
   const itemObj = {
     key: itemProps.id,
@@ -13,6 +9,7 @@ const handleClickItemAdd = (itemProps: IStoreData, itemCount: number) => {
     image: isImgEmpty ? '' : itemProps.images[0],
     count: itemCount,
     price: itemProps.price,
+    checked: true,
   }
 
   const getCartStorage = newStore.get('myFSCart') ?? []
@@ -28,12 +25,12 @@ const handleClickItemAdd = (itemProps: IStoreData, itemCount: number) => {
     newStore.set('myFSCart', [...getCartStorage, itemObj])
     return
   }
-  const newData = {
-    ...getCartStorage[storedItemIndex],
-    count: getCartStorage[storedItemIndex].count + itemCount,
-  }
-  getCartStorage.splice(storedItemIndex, 1)
-  newStore.set('myFSCart', [newData, ...getCartStorage])
+
+  const mappedData = getCartStorage.map((item: ICartData) =>
+    item.key === itemProps.id ? { ...item, count: item.count + itemCount } : { ...item }
+  )
+
+  newStore.set('myFSCart', [...mappedData])
 }
 
 export default handleClickItemAdd

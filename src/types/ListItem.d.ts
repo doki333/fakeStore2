@@ -26,4 +26,5 @@ export interface ICartData {
   image: string
   count: number
   price: number
+  checked: boolean
 }

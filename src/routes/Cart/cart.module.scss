@@ -1,0 +1,72 @@
+@use '/src/styles/mixins/position';
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/responsive';
+
+.cartWrapper {
+  .cItemList {
+    padding-bottom: 20px;
+  }
+
+  .costBottom {
+    position: relative;
+    border-top: 1px solid colors.$FS_SECOND_GRAY;
+
+    dl {
+      z-index: 1;
+      padding: 15px;
+
+      dd,
+      dt {
+        display: inline-block;
+      }
+
+      dd {
+        position: absolute;
+        right: 0;
+        font-size: 22px;
+      }
+
+      &:last-child {
+        dd {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .checkOut {
+    z-index: 0;
+    padding: 15px;
+    margin-top: 15px;
+    line-height: 45px;
+    text-align: center;
+    cursor: pointer;
+    outline: 3px solid colors.$FS_MAIN_YELLOW;
+    transition: 0.6s all ease;
+
+    &:hover {
+      font-size: 26px;
+    }
+  }
+}
+
+@include responsive.between(M, ML) {
+  .cartWrapper {
+    .costBottom {
+      position: relative;
+      width: 90%;
+      margin: 0 auto;
+      margin-bottom: 20px;
+      border-top: 1px solid colors.$FS_SECOND_GRAY;
+    }
+
+    .checkOut {
+      width: 95%;
+      margin: 0 auto;
+
+      &:hover {
+        font-size: 26px;
+      }
+    }
+  }
+}
