@@ -25,15 +25,18 @@ const Cart = () => {
     newStore.set('myFSCart', newData)
   }
 
-  const handleClickCountBtn = (e: MouseEvent<HTMLButtonElement>) => {}
-
   return (
     <div className={styles.cartWrapper}>
       {isNothing && <p>Nothing! Add Something</p>}
       {dataList && (
         <ul className={styles.cItemList}>
           {dataList.map((cartItem: ICartData) => (
-            <CartItem key={`cart-${cartItem.key}`} cartItem={cartItem} handleChange={handleChange} />
+            <CartItem
+              key={`cart-${cartItem.key}`}
+              cartItem={cartItem}
+              handleChange={handleChange}
+              setDataList={setDataList}
+            />
           ))}
         </ul>
       )}

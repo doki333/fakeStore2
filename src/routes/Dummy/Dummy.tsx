@@ -51,6 +51,7 @@ const Dummy = () => {
   return (
     <>
       {isLoading && <Spinner />}
+      {!cateId && <h1>Hello</h1>}
       <div>
         {data &&
           data.pages.map((d, index) => {

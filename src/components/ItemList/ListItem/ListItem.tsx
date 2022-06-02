@@ -3,18 +3,23 @@ import PLACEHOLDER from 'assets/no-image.jpg'
 import styles from './listItem.module.scss'
 import { MouseEvent, useState } from 'react'
 import handleClickItemAdd from './setCartStorage'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { cartItemState } from 'recoil/cart.atom'
 
 interface IProps {
   itemProps: IStoreData
 }
 
 const ListItem = ({ itemProps }: IProps) => {
+  const setCartList = useSetRecoilState(cartItemState)
+
   const [isVisible, setIsVisible] = useState(false)
   const [count, setCount] = useState(1)
+
   const isImgEmpty = itemProps.images[0].length === 0 || !itemProps.images[0].includes('https')
 
   const handleClickAdd = () => {
-    handleClickItemAdd(itemProps, count)
+    handleClickItemAdd(itemProps, count, setCartList)
     setIsVisible((prev) => !prev)
     setCount(1)
   }

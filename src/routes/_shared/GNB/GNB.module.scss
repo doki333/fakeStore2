@@ -50,8 +50,20 @@
   }
 
   .rightWing {
+    position: relative;
     height: 11px;
     transform: translateY(-50%);
+
+    span {
+      position: absolute;
+      top: -4px;
+      right: -6px;
+      display: block;
+      width: 7px;
+      height: 7px;
+      background: colors.$RED;
+      border-radius: 50%;
+    }
 
     .cart {
       width: 25px;
@@ -61,24 +73,26 @@
 
   .leftWing {
     position: relative;
-    top: 10px;
+    top: 16px;
     width: 30px;
     transform: translateY(-50%);
 
-    h1 {
+    span {
+      display: block;
       font-size: 30px;
       font-weight: 1000;
     }
 
-    h1:last-child {
+    span:last-child {
       position: absolute;
       top: 10px;
-      left: 10px;
+      left: 18px;
+      display: block;
       color: colors.$FS_MAIN_GRAY;
 
       &::before {
         position: absolute;
-        top: -2px;
+        top: 2px;
         left: 8px;
         width: 5px;
         height: 5px;

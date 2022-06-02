@@ -6,14 +6,17 @@ import { CartIcon, MenuIcon } from 'assets/svgs'
 import { cx } from 'styles'
 import styles from './gnb.module.scss'
 import { newStore } from 'services/sessionStore'
+import { useRecoilValue } from 'recoil'
+import { cartItemState } from 'recoil/cart.atom'
 
 const linkList = ['clothes', 'electronics', 'furniture', 'shoes']
 
 const GNB = () => {
   const navigate = useNavigate()
+  const isCartNotEmpty = useRecoilValue(cartItemState)
 
-  const storeLength = newStore.get('myFSCart') ? newStore.get('myFSCart').length : 0
   const currentStatus = window.innerWidth < 600
+
   const [isMobile, setIsMobile] = useState(currentStatus)
   const [isVisible, setIsVisible] = useState(false)
 
@@ -39,12 +42,17 @@ const GNB = () => {
     return () => window.removeEventListener('resize', resizeWindow)
   }, [])
 
+  const handleClickBtn = () => {
+    navigate('/')
+    setIsVisible(false)
+  }
+
   return (
-    <header className={styles.gnb}>
-      <div className={styles.leftWing}>
-        <h1>F</h1>
-        <h1>S</h1>
-      </div>
+    <aside className={styles.gnb}>
+      <button type='button' onClick={handleClickBtn} className={styles.leftWing}>
+        <span>F</span>
+        <span>S</span>
+      </button>
       <nav className={styles.navLinkWrapper}>
         <ul className={cx(styles.linkWrapper, { [styles.isNotVisible]: !isVisible })}>
           {linkList.map((link) => (
@@ -64,14 +72,14 @@ const GNB = () => {
         <button type='button' onClick={handleClickCart} className={styles.cart}>
           <CartIcon />
         </button>
-        <span>{storeLength > 0 ? storeLength : ''}</span>
+        {isCartNotEmpty && <span />}
       </div>
       {isMobile && (
         <button type='button' onClick={handleClickMenu} className={styles.mobileMenu}>
           <MenuIcon />
         </button>
       )}
-    </header>
+    </aside>
   )
 }
 
