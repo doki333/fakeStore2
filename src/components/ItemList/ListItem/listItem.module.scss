@@ -1,52 +1,20 @@
-// .listItem {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center;
-//   width: 350px;
-//   min-width: 350px;
-//   height: 300px;
-//   min-height: 400px;
-//   padding: 20px;
-//   margin-right: 10px;
-//   margin-bottom: 10px;
-//   background: aliceblue;
-
-//   dl {
-//     margin-top: 10px;
-
-//     dt {
-//       display: none;
-//     }
-
-//     .itemTitle {
-//       font-size: 20px;
-//       font-weight: 700;
-//     }
-
-//     dd {
-//       text-align: center;
-//     }
-//   }
-
-//   .imgWrapper {
-//     display: flex;
-//     justify-content: center;
-//     width: 250px;
-//     height: 300px;
-//     // height: 100%;
-
-//     img {
-//       width: 100%;
-//       height: 100%;
-//     }
-//   }
-// }
+@use '/src/styles/constants/colors';
 
 .itemWrapper {
+  position: relative;
+  margin-top: 10px;
   margin-right: 10px;
 
+  .cartAddBtn {
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    background-color: colors.$FS_MAIN_YELLOW;
+  }
+
   .titleBlock {
+    padding: 20px 10px;
+
     dd {
       font-size: 18px;
       font-weight: 700;
@@ -59,6 +27,76 @@
 
     dt {
       display: none;
+    }
+  }
+
+  .countModal {
+    position: absolute;
+    top: 0%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 80%);
+
+    .costBlock {
+      margin-top: 10px;
+      text-align: center;
+
+      label {
+        display: block;
+        font-size: 26px;
+        font-weight: 700;
+        color: colors.$FS_MAIN_GRAY;
+      }
+
+      input {
+        color: colors.$FS_MAIN_YELLOW;
+        text-align: center;
+      }
+    }
+
+    .bottomBtns {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+
+      button {
+        width: 50%;
+        padding: 10px 0;
+        font-size: 20px;
+        color: colors.$WHITE;
+
+        svg {
+          width: 25px;
+          height: 25px;
+          fill: colors.$WHITE;
+        }
+      }
+
+      button:first-child {
+        color: colors.$FS_MAIN_YELLOW;
+      }
+    }
+
+    .countBlock {
+      width: 100%;
+
+      input {
+        width: 200px;
+        font-size: 26px;
+        text-align: center;
+      }
+
+      .countBtn {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+        background: gainsboro;
+        border-radius: 50%;
+      }
     }
   }
 }

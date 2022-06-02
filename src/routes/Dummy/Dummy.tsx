@@ -15,25 +15,32 @@ const categoryCode: ICateData = {
   electronics: 2,
   furniture: 3,
   shoes: 4,
-  others: 5,
 }
 
 const Dummy = () => {
   const { ref, inView } = useInView()
   const { category } = useParams()
   const cateId = category ? categoryCode[category] : null
+  // const { scrollHeight, scrollTop, clientHeight } = document.documentElement
 
-  const { hasNextPage, isLoading, isError, data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery<
-    IStoreData[],
-    Error
-  >(['#getMoreStoreItems', cateId], ({ pageParam = 0 }) => getMoreItemData({ pageParam, code: cateId }), {
-    getNextPageParam: (_lastPage, pages) => {
-      if (_lastPage.length === 0) return undefined
-      return pages.length * 20
-    },
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
-  })
+  const { hasNextPage, isLoading, data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery<IStoreData[], Error>(
+    ['#getMoreStoreItems', cateId],
+    ({ pageParam = 0 }) => getMoreItemData({ pageParam, code: cateId }),
+    {
+      getNextPageParam: (_lastPage, pages) => {
+        if (_lastPage.length === 0) return undefined
+        return pages.length * 20
+      },
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+    }
+  )
+
+  const handleClickBtn = () => {
+    window.scrollTo({
+      top: 0,
+    })
+  }
 
   useEffect(() => {
     if (inView && hasNextPage) {
@@ -55,6 +62,11 @@ const Dummy = () => {
         <div className={styles.loadingBlock} ref={ref}>
           {isFetchingNextPage && hasNextPage ? <Spinner /> : 'Nothing more to load!'}
         </div>
+      )}
+      {!hasNextPage && !isLoading && !isFetchingNextPage && (
+        <button type='button' onClick={handleClickBtn} className={styles.scrollUpBtn}>
+          <span />
+        </button>
       )}
     </>
   )

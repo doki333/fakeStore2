@@ -17,6 +17,13 @@ export interface ICateData {
   electronics: number
   furniture: number
   shoes: number
-  others: number
   [key: string]: number
+}
+
+export interface ICartData {
+  key: number
+  name: string
+  image: string
+  count: number
+  price: number
 }

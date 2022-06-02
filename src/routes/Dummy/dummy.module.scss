@@ -6,3 +6,56 @@
   font-weight: 700;
   color: colors.$FS_MAIN_YELLOW;
 }
+
+.scrollUpBtn {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 60px;
+  text-align: center;
+  background: colors.$FS_MAIN_YELLOW;
+  border-radius: 50%;
+  transition: 0.1s ease all;
+
+  &:hover {
+    span {
+      background: colors.$FS_SECOND_GRAY;
+
+      &::before {
+        background: colors.$FS_SECOND_GRAY;
+      }
+    }
+  }
+
+  span {
+    position: absolute;
+    top: 22px;
+    right: 8px;
+    width: 20px;
+    height: 2px;
+    content: '';
+    background: colors.$BLACK;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    transition: 0.6s ease all;
+    transform: rotate(45deg);
+
+    &::before {
+      position: absolute;
+      top: 10px;
+      left: -9px;
+      width: 20px;
+      height: 2px;
+      content: '';
+      background: colors.$BLACK;
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+      transition: 0.6s ease all;
+      transform: rotate(90deg);
+    }
+  }
+}

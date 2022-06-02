@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 
 import { useEffect, useState } from 'hooks'
 import { CartIcon, MenuIcon } from 'assets/svgs'
@@ -9,6 +9,8 @@ import styles from './gnb.module.scss'
 const linkList = ['clothes', 'electronics', 'furniture', 'shoes']
 
 const GNB = () => {
+  const navigate = useNavigate()
+
   const currentStatus = window.innerWidth < 600
   const [isMobile, setIsMobile] = useState(currentStatus)
   const [isVisible, setIsVisible] = useState(false)
@@ -23,6 +25,11 @@ const GNB = () => {
       return
     }
     setIsMobile(false)
+  }
+
+  const handleClickCart = () => {
+    navigate('/cart')
+    setIsVisible(false)
   }
 
   useEffect(() => {
@@ -52,7 +59,7 @@ const GNB = () => {
         </ul>
       </nav>
       <div className={styles.rightWing}>
-        <button type='button' className={styles.cart}>
+        <button type='button' onClick={handleClickCart} className={styles.cart}>
           <CartIcon />
         </button>
       </div>
