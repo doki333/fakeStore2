@@ -9,6 +9,7 @@ import getMoreItemData from 'services/getMoreItemData'
 import { IStoreData, ICateData } from 'types/ListItem'
 
 import styles from './dummy.module.scss'
+import DummyMain from './DummyMain'
 
 const categoryCode: ICateData = {
   clothes: 1,
@@ -51,8 +52,9 @@ const Dummy = () => {
   return (
     <>
       {isLoading && <Spinner />}
-      {!cateId && <h1>Hello</h1>}
-      <div>
+      {!cateId && !isLoading && <DummyMain />}
+      <div className={styles.mainItemList}>
+        {!cateId && !isLoading && <h1>All Products</h1>}
         {data &&
           data.pages.map((d, index) => {
             const randomKey = index * Math.random()

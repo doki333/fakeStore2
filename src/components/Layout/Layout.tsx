@@ -9,7 +9,7 @@ const Layout = () => {
   const upperCategory = category && category.replace(category[0], category[0].toUpperCase())
   return (
     <main className={styles.mainWrapper}>
-      {isNotCart && <h1>{category !== undefined ? upperCategory : 'All'}</h1>}
+      {isNotCart && <h1>{category !== undefined ? upperCategory : ''}</h1>}
       {!isNotCart && <h1>Cart</h1>}
       <Outlet />
     </main>

@@ -1,8 +1,10 @@
+import { ChangeEvent, useMemo, useState } from 'react'
+import CartItem from './CartItem'
+
 import { newStore } from 'services/sessionStore'
 import { ICartData } from 'types/ListItem'
+
 import styles from './cart.module.scss'
-import { ChangeEvent, MouseEvent, useState } from 'react'
-import CartItem from './CartItem'
 
 function getTotalCost(d: ICartData[]) {
   const checkedData = d.filter((data: ICartData) => data.checked === true)
@@ -12,9 +14,9 @@ function getTotalCost(d: ICartData[]) {
 const Cart = () => {
   const getSessionData = newStore.get('myFSCart') ?? []
   const isNothing = !getSessionData || getSessionData.length === 0
-  const [dataList, setDataList] = useState(getSessionData)
 
-  const totalCost = getTotalCost(dataList)
+  const [dataList, setDataList] = useState(getSessionData)
+  const totalCost = useMemo(() => getTotalCost(dataList), [dataList])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id } = e.currentTarget.dataset

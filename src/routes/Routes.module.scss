@@ -1,5 +1,9 @@
 @use '/src/styles/constants/colors';
 
+html {
+  scroll-behavior: smooth;
+}
+
 .app {
   display: flex;
   align-items: center;

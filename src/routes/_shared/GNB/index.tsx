@@ -6,14 +6,14 @@ import { CartIcon, MenuIcon } from 'assets/svgs'
 import { cx } from 'styles'
 import styles from './gnb.module.scss'
 import { newStore } from 'services/sessionStore'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { cartItemState } from 'recoil/cart.atom'
 
 const linkList = ['clothes', 'electronics', 'furniture', 'shoes']
 
 const GNB = () => {
   const navigate = useNavigate()
-  const isCartNotEmpty = useRecoilValue(cartItemState)
+  const [cartStatus, setCartStatus] = useRecoilState(cartItemState)
 
   const currentStatus = window.innerWidth < 600
 
@@ -38,9 +38,13 @@ const GNB = () => {
   }
 
   useEffect(() => {
+    const getData = newStore.get('myFSCart') ?? []
+    if (getData.length !== 0) {
+      setCartStatus(true)
+    }
     window.addEventListener('resize', resizeWindow)
     return () => window.removeEventListener('resize', resizeWindow)
-  }, [])
+  }, [setCartStatus])
 
   const handleClickBtn = () => {
     navigate('/')
@@ -72,7 +76,7 @@ const GNB = () => {
         <button type='button' onClick={handleClickCart} className={styles.cart}>
           <CartIcon />
         </button>
-        {isCartNotEmpty && <span />}
+        {cartStatus && <span />}
       </div>
       {isMobile && (
         <button type='button' onClick={handleClickMenu} className={styles.mobileMenu}>
