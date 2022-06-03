@@ -2,13 +2,24 @@
 
 .mainItemList {
   text-align: center;
+
+  h1 {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    font-size: 32px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: colors.$FS_MAIN_YELLOW;
+    text-transform: uppercase;
+    letter-spacing: 10px;
+  }
 }
 
 .loadingBlock {
   margin-top: 20px;
   font-size: 22px;
   font-weight: 700;
-  color: colors.$FS_MAIN_YELLOW;
+  color: colors.$FS_MAIN_BROWN;
 }
 
 .scrollUpBtn {
@@ -27,10 +38,10 @@
 
   &:hover {
     span {
-      background: colors.$FS_SECOND_GRAY;
+      background: colors.$WHITE;
 
       &::before {
-        background: colors.$FS_SECOND_GRAY;
+        background: colors.$WHITE;
       }
     }
   }

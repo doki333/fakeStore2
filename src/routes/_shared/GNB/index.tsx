@@ -1,13 +1,14 @@
+import { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
+import { useRecoilState } from 'recoil'
 
-import { useEffect, useState } from 'hooks'
+import { cartItemState } from 'recoil/cart.atom'
+
+import { newStore } from 'services/sessionStore'
 import { CartIcon, MenuIcon } from 'assets/svgs'
 
 import { cx } from 'styles'
 import styles from './gnb.module.scss'
-import { newStore } from 'services/sessionStore'
-import { useRecoilState } from 'recoil'
-import { cartItemState } from 'recoil/cart.atom'
 
 const linkList = ['clothes', 'electronics', 'furniture', 'shoes']
 
@@ -53,36 +54,38 @@ const GNB = () => {
 
   return (
     <aside className={styles.gnb}>
-      <button type='button' onClick={handleClickBtn} className={styles.leftWing}>
-        <span>F</span>
-        <span>S</span>
-      </button>
-      <nav className={styles.navLinkWrapper}>
-        <ul className={cx(styles.linkWrapper, { [styles.isNotVisible]: !isVisible })}>
-          {linkList.map((link) => (
-            <li key={`linkItem-${link}`}>
-              <NavLink
-                to={link}
-                className={({ isActive }) => (isActive ? styles.isActive : styles.linkBlock)}
-                onClick={handleClickMenu}
-              >
-                {link}
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      <div className={styles.rightWing}>
-        <button type='button' onClick={handleClickCart} className={styles.cart}>
-          <CartIcon />
+      <div className={styles.gnbInner}>
+        <button type='button' onClick={handleClickBtn} className={styles.leftWing}>
+          <span>F</span>
+          <span>S</span>
         </button>
-        {cartStatus && <span />}
+        <nav className={styles.navLinkWrapper}>
+          <ul className={cx(styles.linkWrapper, { [styles.isNotVisible]: !isVisible })}>
+            {linkList.map((link) => (
+              <li key={`linkItem-${link}`}>
+                <NavLink
+                  to={link}
+                  className={({ isActive }) => (isActive ? styles.isActive : styles.linkBlock)}
+                  onClick={handleClickMenu}
+                >
+                  {link}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div className={styles.rightWing}>
+          <button type='button' onClick={handleClickCart} className={styles.cart}>
+            <CartIcon />
+          </button>
+          {cartStatus && <span />}
+          {isMobile && (
+            <button type='button' onClick={handleClickMenu} className={styles.mobileMenu}>
+              <MenuIcon />
+            </button>
+          )}
+        </div>
       </div>
-      {isMobile && (
-        <button type='button' onClick={handleClickMenu} className={styles.mobileMenu}>
-          <MenuIcon />
-        </button>
-      )}
     </aside>
   )
 }

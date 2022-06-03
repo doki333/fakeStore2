@@ -1,11 +1,11 @@
 import { ChangeEvent, useMemo, useState } from 'react'
-import CartItem from './CartItem'
 
+import CartItem from './CartItem'
 import { newStore } from 'services/sessionStore'
 import { ICartData } from 'types/ListItem'
+import { TrashIcon } from 'assets/svgs'
 
 import styles from './cart.module.scss'
-import { TrashIcon } from 'assets/svgs'
 
 function getTotalCost(d: ICartData[]) {
   const checkedData = d.filter((data: ICartData) => data.checked === true)

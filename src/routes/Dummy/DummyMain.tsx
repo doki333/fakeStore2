@@ -1,17 +1,17 @@
-import React, { MouseEvent } from 'react'
+import { MouseEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import FURNITURE from 'assets/furniture.jpg'
-import WATCH from 'assets/watch.jpg'
 import styles from './dummyMain.module.scss'
 import { cx } from 'styles'
-import { useNavigate } from 'react-router-dom'
 
 const DummyMain = () => {
   const navigate = useNavigate()
+
   const handleClickShop = (e: MouseEvent<HTMLButtonElement>) => {
     const { category } = e.currentTarget.dataset
     navigate(`/${category}`)
   }
+
   return (
     <div className={styles.mainImgWrapper}>
       <section className={cx(styles.bgWrapper, styles.bg1)}>

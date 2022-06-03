@@ -17,7 +17,7 @@
       height: 25px;
       cursor: pointer;
       border-radius: 2px;
-      outline: 2px solid colors.$GRAY2;
+      outline: 2px solid colors.$FS_MAIN_BROWN;
 
       & + label {
         position: absolute;
@@ -26,7 +26,7 @@
       }
 
       &:checked {
-        background: colors.$FS_SECOND_YELLOW;
+        background: colors.$FS_MAIN_YELLOW;
 
         & + label {
           svg {

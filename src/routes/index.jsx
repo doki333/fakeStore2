@@ -1,12 +1,12 @@
-import styles from './routes.module.scss'
-
-import GNB from 'routes/_shared/GNB'
-import Layout from 'components/Layout/Layout'
-import Dummy from './Dummy/Dummy'
 import { Route, Routes } from 'react-router-dom'
-import { lazy, Suspense } from 'react'
-import Cart from './Cart/Cart'
 import { Toaster } from 'react-hot-toast'
+
+import Dummy from './Dummy/Dummy'
+import Cart from './Cart/Cart'
+import Layout from 'components/Layout/Layout'
+import GNB from 'routes/_shared/GNB'
+
+import styles from './routes.module.scss'
 
 const App = () => {
   return (

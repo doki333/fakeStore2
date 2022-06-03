@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { QueryFunctionContext } from 'react-query'
-import toast from 'react-hot-toast'
 
 interface IProps {
   pageParam: QueryFunctionContext
@@ -8,8 +7,6 @@ interface IProps {
 }
 
 const PROXY = window.location.hostname === 'localhost' ? '/api/v1' : '/proxy'
-
-// /categories/1/products?offset=10&limit=10
 
 const getMoreItemData = async ({ pageParam, code }: IProps) => {
   const prevAddr = code === null ? '' : `/categories/${code}`

@@ -2,15 +2,15 @@ import { useEffect } from 'react'
 import { useInfiniteQuery } from 'react-query'
 import { useInView } from 'react-intersection-observer'
 import { useParams } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
+import DummyMain from './DummyMain'
 import ItemList from 'components/ItemList/ItemList'
 import Spinner from 'components/Spinner/Spinner'
 import getMoreItemData from 'services/getMoreItemData'
 import { IStoreData, ICateData } from 'types/ListItem'
 
 import styles from './dummy.module.scss'
-import DummyMain from './DummyMain'
-import toast from 'react-hot-toast'
 
 const categoryCode: ICateData = {
   clothes: 1,
@@ -67,10 +67,11 @@ const Dummy = () => {
       )}
       {!cateId && !isLoading && <DummyMain />}
       <div className={styles.mainItemList}>
+        {!cateId && !isLoading && <h1>All Products</h1>}
         {data &&
           data.pages.map((d, index) => {
-            const randomKey = index * Math.random()
-            return <ItemList key={`shopList-${randomKey}`} itemData={d} cateId={cateId} />
+            const randomKey = `itemList-${index}`
+            return <ItemList key={`shopList-${randomKey}`} itemData={d} />
           })}
       </div>
       <div className={styles.loadingBlock} ref={ref}>

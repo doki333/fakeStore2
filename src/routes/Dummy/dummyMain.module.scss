@@ -23,6 +23,11 @@
       text-shadow: 0 0 5px colors.$BLACK;
       transform: translate(-50%, 50%);
 
+      h1 {
+        margin-bottom: 30px;
+        font-size: 32px;
+      }
+
       button {
         padding: 10px 20px;
         color: colors.$WHITE;

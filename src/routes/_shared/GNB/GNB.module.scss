@@ -7,13 +7,16 @@
   top: 0;
   left: 0;
   z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 18px 15px;
+  width: 100vw;
+  padding: 18px 20px;
   background-color: colors.$FS_MAIN_YELLOW;
   border-bottom: 1px solid colors.$GRAYE;
+
+  .gnbInner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   .navLinkWrapper {
     text-align: center;
@@ -21,10 +24,10 @@
     ul {
       z-index: -1000;
       display: flex;
+      font-size: 20px;
     }
 
     .linkBlock {
-      // background: red;
       min-width: 100px;
       padding: 4px 14px;
       color: colors.$GRAY2;
@@ -35,7 +38,6 @@
       padding: 4px 14px;
       font-weight: 700;
       color: colors.$GRAY2;
-      // position: relative;
 
       &::before {
         position: absolute;
@@ -49,28 +51,6 @@
     }
   }
 
-  .rightWing {
-    position: relative;
-    height: 11px;
-    transform: translateY(-50%);
-
-    span {
-      position: absolute;
-      top: -4px;
-      right: -6px;
-      display: block;
-      width: 7px;
-      height: 7px;
-      background: colors.$RED;
-      border-radius: 50%;
-    }
-
-    .cart {
-      width: 25px;
-      height: 25px;
-    }
-  }
-
   .leftWing {
     position: relative;
     top: 16px;
@@ -80,7 +60,7 @@
     span {
       display: block;
       font-size: 30px;
-      font-weight: 1000;
+      font-weight: 900;
     }
 
     span:last-child {
@@ -106,12 +86,32 @@
     }
   }
 
-  .mobileMenu {
-    svg {
-      width: 25px;
-      height: 25px;
-      fill: colors.$BLACK;
-      // stroke-width: 10px;
+  .rightWing {
+    position: relative;
+
+    .cart {
+      width: 30px;
+      height: 30px;
+      transform: translateX(-10px);
+    }
+
+    span {
+      position: absolute;
+      top: -1px;
+      left: 18px;
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      background: colors.$RED;
+      border-radius: 50%;
+    }
+
+    .mobileMenu {
+      svg {
+        width: 25px;
+        height: 25px;
+        fill: colors.$BLACK;
+      }
     }
   }
 
@@ -142,14 +142,11 @@
             width: inherit;
             height: 48px;
             padding: 0;
-            background: colors.$FS_SECOND_GRAY;
-
-            &:active {
-              background: colors.$FS_SECOND_YELLOW;
-            }
+            background: colors.$GRAYE;
 
             &:hover {
-              background: colors.$FS_SECOND_YELLOW;
+              color: colors.$WHITE;
+              background: colors.$GRAYA;
             }
           }
 
@@ -172,34 +169,14 @@
             }
 
             &:hover {
-              background: colors.$FS_SECOND_YELLOW;
+              color: colors.$WHITE;
+              background: colors.$GRAYA;
             }
           }
         }
 
         &.isNotVisible {
-          // z-index: -10;
           max-height: 0;
-          // visibility: hidden;
-        }
-      }
-    }
-
-    .rightWing {
-      position: absolute;
-      right: 0;
-      transform: translate(-60px, -10px);
-
-      .cart {
-        &::before {
-          position: fixed;
-          top: -2px;
-          left: 24px;
-          width: 4px;
-          height: 4px;
-          content: '';
-          background: colors.$RED;
-          border-radius: 50%;
         }
       }
     }
