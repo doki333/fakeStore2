@@ -5,7 +5,7 @@ import { ICartData } from 'types/ListItem'
 import PLACEHOLDER from 'assets/no-image.jpg'
 import { CheckIcon, Minus2Icon, Plus2Icon } from 'assets/svgs'
 import handleItemCount from './cartItemCount'
-import styles from './cartItem.module.scss'
+import styles from './cartData.module.scss'
 
 interface IProps {
   cartItem: ICartData

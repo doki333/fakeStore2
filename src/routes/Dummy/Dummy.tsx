@@ -4,8 +4,8 @@ import { useInView } from 'react-intersection-observer'
 import { useParams } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
-import DummyMain from './DummyMain'
-import ItemList from 'components/ItemList/ItemList'
+import DummyMain from './MainPhotos'
+import StoreItemList from 'components/ItemList/StoreItemList'
 import Spinner from 'components/Spinner/Spinner'
 import getMoreItemData from 'services/getMoreItemData'
 import { IStoreData, ICateData } from 'types/ListItem'
@@ -71,7 +71,7 @@ const Dummy = () => {
         {data &&
           data.pages.map((d, index) => {
             const randomKey = `itemList-${index}`
-            return <ItemList key={`shopList-${randomKey}`} storeItemData={d} />
+            return <StoreItemList key={`shopList-${randomKey}`} storeItemData={d} />
           })}
       </div>
       <div className={styles.loadingBlock} ref={ref}>

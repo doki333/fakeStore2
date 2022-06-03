@@ -1,7 +1,7 @@
 import { MouseEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import styles from './dummyMain.module.scss'
+import styles from './mainPhotos.module.scss'
 import { cx } from 'styles'
 
 const DummyMain = () => {

@@ -1,6 +1,6 @@
 import { ChangeEvent, useMemo, useState } from 'react'
 
-import CartItem from './CartItem'
+import CartItem from './CartData'
 import { newStore } from 'services/sessionStore'
 import { ICartData } from 'types/ListItem'
 import { TrashIcon } from 'assets/svgs'

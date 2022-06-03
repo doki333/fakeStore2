@@ -8,13 +8,13 @@ import handleClickItemAdd from './setCartStorage'
 import PLACEHOLDER from 'assets/no-image.jpg'
 import { Minus2Icon, Plus2Icon } from 'assets/svgs'
 
-import styles from './listItem.module.scss'
+import styles from './eachItem.module.scss'
 
 interface IProps {
   itemProps: IStoreData
 }
 
-const ListItem = ({ itemProps }: IProps) => {
+const EachItem = ({ itemProps }: IProps) => {
   const setCartList = useSetRecoilState(cartItemState)
 
   const [isVisible, setIsVisible] = useState(false)
@@ -92,4 +92,4 @@ const ListItem = ({ itemProps }: IProps) => {
   )
 }
 
-export default ListItem
+export default EachItem

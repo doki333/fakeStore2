@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 
 import Dummy from './Dummy/Dummy'
-import Cart from './Cart/Cart'
+import Cart from './Cart'
 import Layout from 'components/Layout/Layout'
 import GNB from 'routes/_shared/GNB'
 
