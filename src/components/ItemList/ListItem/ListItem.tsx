@@ -1,10 +1,13 @@
-import { IStoreData } from 'types/ListItem'
-import PLACEHOLDER from 'assets/no-image.jpg'
-import styles from './listItem.module.scss'
 import { MouseEvent, useState } from 'react'
-import handleClickItemAdd from './setCartStorage'
-import { useRecoilState, useSetRecoilState } from 'recoil'
+import { useSetRecoilState } from 'recoil'
+
 import { cartItemState } from 'recoil/cart.atom'
+import { IStoreData } from 'types/ListItem'
+import handleClickItemAdd from './setCartStorage'
+
+import styles from './listItem.module.scss'
+import PLACEHOLDER from 'assets/no-image.jpg'
+import { Minus2Icon, Plus2Icon } from 'assets/svgs'
 
 interface IProps {
   itemProps: IStoreData
@@ -62,11 +65,11 @@ const ListItem = ({ itemProps }: IProps) => {
         <div className={styles.countModal}>
           <div className={styles.countBlock}>
             <button className={styles.countBtn} type='button' data-id='minus' onClick={handleClickCount}>
-              -
+              <Minus2Icon />
             </button>
             <input type='number' readOnly value={count} />
             <button className={styles.countBtn} type='button' data-id='plus' onClick={handleClickCount}>
-              +
+              <Plus2Icon />
             </button>
           </div>
           <div className={styles.costBlock}>

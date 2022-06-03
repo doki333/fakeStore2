@@ -22,6 +22,7 @@ const CartItem = ({ cartItem, handleChange, setDataList }: IProps) => {
     }
     handleItemCount(cartItem, initialCount, setDataList)
   }
+
   return (
     <li key={`cart-${cartItem.key}`} className={styles.cartListItem}>
       <div className={styles.inputBoxWrapper}>

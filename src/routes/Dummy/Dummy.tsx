@@ -22,7 +22,6 @@ const Dummy = () => {
   const { ref, inView } = useInView()
   const { category } = useParams()
   const cateId = category ? categoryCode[category] : null
-  // const { scrollHeight, scrollTop, clientHeight } = document.documentElement
 
   const { hasNextPage, isLoading, data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery<IStoreData[], Error>(
     ['#getMoreStoreItems', cateId],
