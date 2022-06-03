@@ -3,13 +3,13 @@ import ListItem from './ListItem/ListItem'
 import styles from './itemList.module.scss'
 
 interface IProps {
-  itemData: IStoreData[]
+  storeItemData: IStoreData[]
 }
 
-const ItemList = ({ itemData }: IProps) => {
+const ItemList = ({ storeItemData }: IProps) => {
   return (
     <ul className={styles.itemListWrapper}>
-      {itemData.map((item) => (
+      {storeItemData.map((item) => (
         <ListItem key={`item-${item.id}`} itemProps={item} />
       ))}
     </ul>
