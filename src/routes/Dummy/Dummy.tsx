@@ -25,7 +25,7 @@ const Dummy = () => {
   const cateId = category ? categoryCode[category] : null
 
   const { hasNextPage, isLoading, data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery<IStoreData[], Error>(
-    ['#getMoreStoreItems', cateId],
+    ['bringAPIData', cateId],
     ({ pageParam = 0 }) => getMoreItemData({ pageParam, code: cateId }),
     {
       getNextPageParam: (_lastPage, pages) => {
@@ -57,6 +57,8 @@ const Dummy = () => {
       fetchNextPage()
     }
   }, [fetchNextPage, hasNextPage, inView])
+
+  if (!data) return null
 
   return (
     <>
