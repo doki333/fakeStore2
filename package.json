@@ -6,10 +6,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
-    "chromatic": "npx chromatic --project-token=fe5071a11f57"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
@@ -43,34 +40,23 @@
     "react-i18next": ">=11.16.4"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
     "axios": "^0.27.2",
-    "bignumber.js": "^9.0.2",
     "classnames": "^2.3.1",
-    "dayjs": "^1.11.2",
-    "ga-4-react": "^0.1.281",
-    "i18n-iso-countries": "^7.4.0",
-    "i18next": "^21.8.0",
-    "i18next-browser-languagedetector": "^6.1.4",
     "lodash": "^4.17.21",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-error-boundary": "^3.1.4",
     "react-hot-toast": "^2.2.0",
-    "react-i18next": "^11.16.9",
     "react-intersection-observer": "^9.2.0",
     "react-query": "^3.39.0",
-    "react-redux": "^8.0.1",
     "react-router-dom": "6",
     "react-scripts": "5.0.1",
     "react-use": "^17.3.2",
     "recoil": "^0.7.3-alpha.2",
     "store": "^2.0.12",
-    "victory": "^36.4.0",
-    "victory-core": "^36.4.0",
     "web-vitals": "^2.1.0"
   },
   "devDependencies": {
