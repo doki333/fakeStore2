@@ -10,6 +10,7 @@ import { IStoreData, ICateData } from 'types/ListItem'
 
 import styles from './dummy.module.scss'
 import DummyMain from './DummyMain'
+import toast from 'react-hot-toast'
 
 const categoryCode: ICateData = {
   clothes: 1,
@@ -31,6 +32,15 @@ const Dummy = () => {
         if (_lastPage.length === 0) return undefined
         return pages.length * 20
       },
+      onError: () => {
+        toast.error('API 통신 실패!', {
+          style: {
+            background: '#F8D7DA',
+            color: '#783b45',
+          },
+        })
+      },
+      retry: 1,
       refetchOnWindowFocus: false,
       refetchOnMount: false,
     }
@@ -50,22 +60,24 @@ const Dummy = () => {
 
   return (
     <>
-      {isLoading && <Spinner />}
+      {isLoading && (
+        <div className={styles.mainSpinner}>
+          <Spinner />
+        </div>
+      )}
       {!cateId && !isLoading && <DummyMain />}
       <div className={styles.mainItemList}>
-        {!cateId && !isLoading && <h1>All Products</h1>}
         {data &&
           data.pages.map((d, index) => {
             const randomKey = index * Math.random()
-            return <ItemList key={`shopList-${randomKey}`} itemData={d} />
+            return <ItemList key={`shopList-${randomKey}`} itemData={d} cateId={cateId} />
           })}
       </div>
-      {data && (
-        <div className={styles.loadingBlock} ref={ref}>
-          {isFetchingNextPage && hasNextPage ? <Spinner /> : 'Nothing more to load!'}
-        </div>
-      )}
-      {!hasNextPage && !isLoading && !isFetchingNextPage && (
+      <div className={styles.loadingBlock} ref={ref}>
+        {isFetchingNextPage && hasNextPage && <Spinner />}
+        {data && !hasNextPage && 'Nothing more to load!'}
+      </div>
+      {!isLoading && (
         <button type='button' onClick={handleClickBtn} className={styles.scrollUpBtn}>
           <span />
         </button>

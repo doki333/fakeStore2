@@ -5,15 +5,19 @@ import styles from './itemList.module.scss'
 
 interface IProps {
   itemData: IStoreData[]
+  cateId: number | null
 }
 
-const ItemList = ({ itemData }: IProps) => {
+const ItemList = ({ itemData, cateId }: IProps) => {
   return (
-    <ul className={styles.itemListWrapper}>
-      {itemData.map((item) => (
-        <ListItem key={`item-${item.id}`} itemProps={item} />
-      ))}
-    </ul>
+    <>
+      {!cateId && <h1>All Products</h1>}
+      <ul className={styles.itemListWrapper}>
+        {itemData.map((item) => (
+          <ListItem key={`item-${item.id}`} itemProps={item} />
+        ))}
+      </ul>
+    </>
   )
 }
 

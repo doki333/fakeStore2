@@ -8,6 +8,7 @@ import handleClickItemAdd from './setCartStorage'
 import styles from './listItem.module.scss'
 import PLACEHOLDER from 'assets/no-image.jpg'
 import { Minus2Icon, Plus2Icon } from 'assets/svgs'
+import toast from 'react-hot-toast'
 
 interface IProps {
   itemProps: IStoreData
@@ -23,6 +24,7 @@ const ListItem = ({ itemProps }: IProps) => {
 
   const handleClickAdd = () => {
     handleClickItemAdd(itemProps, count, setCartList)
+    toast.success('장바구니에 추가 되었습니다')
     setIsVisible((prev) => !prev)
     setCount(1)
   }

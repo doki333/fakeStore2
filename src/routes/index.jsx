@@ -6,11 +6,13 @@ import Dummy from './Dummy/Dummy'
 import { Route, Routes } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
 import Cart from './Cart/Cart'
+import { Toaster } from 'react-hot-toast'
 
 const App = () => {
   return (
     <div className={styles.appWrapper}>
       <GNB />
+      <Toaster />
       <div className={styles.app}>
         <Routes>
           <Route path='/' element={<Layout />}>

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { QueryFunctionContext } from 'react-query'
+import toast from 'react-hot-toast'
 
 interface IProps {
   pageParam: QueryFunctionContext

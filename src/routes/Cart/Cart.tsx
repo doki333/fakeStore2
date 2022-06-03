@@ -5,6 +5,7 @@ import { newStore } from 'services/sessionStore'
 import { ICartData } from 'types/ListItem'
 
 import styles from './cart.module.scss'
+import { TrashIcon } from 'assets/svgs'
 
 function getTotalCost(d: ICartData[]) {
   const checkedData = d.filter((data: ICartData) => data.checked === true)
@@ -17,6 +18,7 @@ const Cart = () => {
 
   const [dataList, setDataList] = useState(getSessionData)
   const totalCost = useMemo(() => getTotalCost(dataList), [dataList])
+  const shipping = totalCost !== 0 ? 20 : 0
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id } = e.currentTarget.dataset
@@ -25,6 +27,12 @@ const Cart = () => {
     )
     setDataList(newData)
     newStore.set('myFSCart', newData)
+  }
+
+  const handleClickDelete = () => {
+    const uncheckedData = dataList.filter((cart: ICartData) => cart.checked !== true)
+    setDataList(uncheckedData)
+    newStore.set('myFSCart', uncheckedData)
   }
 
   return (
@@ -51,14 +59,19 @@ const Cart = () => {
             </dl>
             <dl>
               <dt>Shipping</dt>
-              <dd>$20.00</dd>
+              <dd>${shipping}.00</dd>
             </dl>
             <dl>
               <dt>Total</dt>
-              <dd>${(totalCost + 20).toLocaleString()}.00</dd>
+              <dd>${(totalCost + shipping).toLocaleString()}.00</dd>
             </dl>
           </ul>
-          <p className={styles.checkOut}>LOGIN TO CHECKOUT</p>
+          <div className={styles.cartBottomBtns}>
+            <button type='button' onClick={handleClickDelete}>
+              <TrashIcon />
+            </button>
+            <button type='button'>CHECKOUT</button>
+          </div>
         </>
       )}
     </div>
