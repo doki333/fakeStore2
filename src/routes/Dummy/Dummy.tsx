@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useInfiniteQuery } from 'react-query'
 import { useInView } from 'react-intersection-observer'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
 import DummyMain from './MainPhotos'
@@ -20,13 +20,14 @@ const categoryCode: ICateData = {
 }
 
 const Dummy = () => {
+  const navigate = useNavigate()
   const { ref, inView } = useInView()
   const { category } = useParams()
-  const cateId = category ? categoryCode[category] : null
+  const cateId = category && Object.keys(categoryCode).includes(category) ? categoryCode[category] : null
 
   const { hasNextPage, isLoading, data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery<IStoreData[], Error>(
     ['bringAPIData', cateId],
-    ({ pageParam = 0 }) => getMoreItemData({ pageParam, code: cateId }),
+    ({ pageParam = 0 }) => getMoreItemData({ pageParam, code: cateId, path: category }),
     {
       getNextPageParam: (_lastPage, pages) => {
         if (_lastPage.length === 0) return undefined
@@ -57,7 +58,10 @@ const Dummy = () => {
     if (inView && hasNextPage) {
       fetchNextPage()
     }
-  }, [fetchNextPage, hasNextPage, inView])
+    if (category && !Object.keys(categoryCode).includes(category)) {
+      navigate('/notFound')
+    }
+  }, [category, fetchNextPage, hasNextPage, inView, navigate])
 
   return (
     <>

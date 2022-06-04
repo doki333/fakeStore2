@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 
 import Dummy from './Dummy/Dummy'
@@ -7,6 +7,7 @@ import Layout from 'components/Layout/Layout'
 import GNB from 'routes/_shared/GNB'
 
 import styles from './routes.module.scss'
+import NotFound from './NotFound/NotFound'
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
             <Route path=':category' element={<Dummy />} />
             <Route path='cart' element={<Cart />} />
           </Route>
+          <Route path='notFound' element={<NotFound />} />
         </Routes>
       </div>
     </div>

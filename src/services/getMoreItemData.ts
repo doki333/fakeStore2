@@ -4,11 +4,15 @@ import { QueryFunctionContext } from 'react-query'
 interface IProps {
   pageParam: QueryFunctionContext
   code: number | null
+  path: string | undefined | null
 }
 
 const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy'
 
-const getMoreItemData = async ({ pageParam, code }: IProps) => {
+const getMoreItemData = async ({ pageParam, code, path }: IProps) => {
+  if (path !== undefined && code === null) {
+    return undefined
+  }
   const prevAddr = code === null ? '/products' : `/categories/${code}/products`
   const response = await axios
     .get(`${PROXY}${prevAddr}?offset=${pageParam}&limit=20`)
