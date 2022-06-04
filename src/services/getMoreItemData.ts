@@ -14,6 +14,7 @@ const getMoreItemData = async ({ pageParam, code }: IProps) => {
     .get(`${PROXY}${prevAddr}/products?offset=${pageParam}&limit=20`, {
       headers: {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
     })
     .then((res) => {
