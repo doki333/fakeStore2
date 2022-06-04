@@ -1,5 +1,5 @@
 [[redirects]]
 from = "/proxy/*"
-  to = "https://api.escuelajs.co/api/v1"  
+  to = "https://api.escuelajs.co"  
   status = 200
   force = true
