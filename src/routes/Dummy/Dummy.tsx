@@ -43,6 +43,7 @@ const Dummy = () => {
       retry: 1,
       refetchOnWindowFocus: false,
       refetchOnMount: false,
+      cacheTime: 0,
     }
   )
 
