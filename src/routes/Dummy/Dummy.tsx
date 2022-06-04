@@ -73,6 +73,7 @@ const Dummy = () => {
       {!cateId && !isLoading && <DummyMain />}
       <div className={styles.mainItemList}>
         {!cateId && !isLoading && <h1>All Products</h1>}
+        {!isLoading && <h1>{category}</h1>}
         {data &&
           data.pages.map((initialItems, index) => {
             const randomKey = `itemList-${index}`
