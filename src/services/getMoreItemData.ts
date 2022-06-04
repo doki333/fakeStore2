@@ -13,8 +13,6 @@ const getMoreItemData = async ({ pageParam, code }: IProps) => {
   const response = await axios
     .get(`${PROXY}${prevAddr}?offset=${pageParam}&limit=20`)
     .then((res) => {
-      // eslint-disable-next-line no-console
-      console.log(res)
       return res.data
     })
     .catch(() => {
