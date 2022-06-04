@@ -56,7 +56,8 @@
 
 
 ### 기능 상세   
-![mainPage](https://user-images.githubusercontent.com/88841429/171993969-f7258b96-a9ac-42a7-8233-d6246bbe7cd2.gif)   
+![mainPage](https://user-images.githubusercontent.com/88841429/171999652-748165be-d393-404c-b47e-3fb6f6c01597.gif)   
+
 
 css의 background-attachment를 이용해서 배경 스크롤 효과를 구현했습니다
 
@@ -75,6 +76,6 @@ store에 sessionStorage engine을 추가하여, 장바구니에 추가한 목록
 장바구니에서 수량 조절을 할 수 있게 하였고, 삭제버튼을 누를 경우 체크된 상품을 삭제하고, 다시 sessionStorage에 저장하도록 하였습니다.
 
 ### 아쉬운 점 및 추후 수정하고 싶은 점   
- 디자인 감각이 많이 부족하다는 것을 다시 한번 느꼈고, netlify 오류를 다루는데 시간이 많이 걸려서 디테일한 부분을 다듬지 못한 것이 아쉽습니다. 이 후에 디자인 및 색감을 통일하고 페이지 이동을 좀 더 원활하게 만들고 싶습니다.   
+ 디자인 감각이 많이 부족하다는 것을 다시 한번 느꼈고, netlify 오류를 다루는데 시간이 많이 걸려서 디테일한 부분을 다듬지 못한 것이 아쉽습니다. 이 후에 디자인 및 색감을 통일하고 404 page를 커스텀해서 netlify에서도 잘 작동되게 하고 싶습니다.
 
 
