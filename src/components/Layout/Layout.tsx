@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import { useLocation } from 'react-use'
-import DummyMain from 'routes/Dummy/MainPhotos'
+import MainPhotos from 'routes/Dummy/MainPhotos'
 import styles from './layout.module.scss'
 
 const Layout = () => {
@@ -10,7 +10,7 @@ const Layout = () => {
 
   return (
     <main className={styles.mainWrapper}>
-      {isFirst && <DummyMain />}
+      {isFirst && <MainPhotos />}
       {!isNotCart && <h1 className={styles.mainTitle}>Cart</h1>}
       <Outlet />
     </main>

@@ -4,7 +4,6 @@ import { useInView } from 'react-intersection-observer'
 import { useNavigate, useParams } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
-import DummyMain from './MainPhotos'
 import StoreItemList from 'components/ItemList/StoreItemList'
 import Spinner from 'components/Spinner/Spinner'
 import getMoreItemData from 'services/getMoreItemData'
@@ -27,7 +26,7 @@ const Dummy = () => {
   const { category } = useParams()
   const cateId = category && Object.keys(categoryCode).includes(category) ? categoryCode[category] : null
 
-  const { hasNextPage, isLoading, data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery<IStoreData[], Error>(
+  const { hasNextPage, data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery<IStoreData[], Error>(
     ['bringAPIData', cateId],
     ({ pageParam = 0 }) => getMoreItemData({ pageParam, code: cateId, path: category }),
     {

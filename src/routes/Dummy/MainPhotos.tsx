@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import styles from './mainPhotos.module.scss'
 import { cx } from 'styles'
 
-const DummyMain = () => {
+const MainPhotos = () => {
   const navigate = useNavigate()
 
   const handleClickShop = (e: MouseEvent<HTMLButtonElement>) => {
@@ -63,4 +63,4 @@ const DummyMain = () => {
   )
 }
 
-export default DummyMain
+export default MainPhotos
