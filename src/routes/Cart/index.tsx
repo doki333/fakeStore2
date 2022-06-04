@@ -22,8 +22,8 @@ const Cart = () => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id } = e.currentTarget.dataset
-    const newData = dataList.map((data: ICartData) =>
-      data.key === Number(id) ? { ...data, checked: !data.checked } : { ...data }
+    const newData = dataList.map((cartThing: ICartData) =>
+      cartThing.key === Number(id) ? { ...cartThing, checked: !cartThing.checked } : { ...cartThing }
     )
     setDataList(newData)
     newStore.set('myFSCart', newData)

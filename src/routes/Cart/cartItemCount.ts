@@ -7,8 +7,8 @@ const handleItemCount = (itemProps: ICartData, itemCount: number, setCartList: S
   if (itemProps.count + itemCount === 0) return
   const getCartStorage = newStore.get('myFSCart')
 
-  const mappedData = getCartStorage.map((item: ICartData) =>
-    item.key === itemProps.key ? { ...item, count: item.count + itemCount } : { ...item }
+  const mappedData = getCartStorage.map((mappingItem: ICartData) =>
+    mappingItem.key === itemProps.key ? { ...mappingItem, count: mappingItem.count + itemCount } : { ...mappingItem }
   )
   setCartList([...mappedData])
   newStore.set('myFSCart', [...mappedData])

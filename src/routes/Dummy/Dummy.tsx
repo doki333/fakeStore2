@@ -71,9 +71,9 @@ const Dummy = () => {
       <div className={styles.mainItemList}>
         {!cateId && !isLoading && <h1>All Products</h1>}
         {data &&
-          data.pages.map((d, index) => {
+          data.pages.map((storeItems, index) => {
             const randomKey = `itemList-${index}`
-            return <StoreItemList key={`shopList-${randomKey}`} storeItemData={d} />
+            return <StoreItemList key={`shopList-${randomKey}`} storeItemData={storeItems} />
           })}
       </div>
       <div className={styles.loadingBlock} ref={ref}>
