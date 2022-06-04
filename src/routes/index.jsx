@@ -8,6 +8,8 @@ import GNB from 'routes/_shared/GNB'
 
 import styles from './routes.module.scss'
 import NotFound from './NotFound/NotFound'
+import { Suspense } from 'react'
+import Spinner from 'components/Spinner/Spinner'
 
 const App = () => {
   return (
@@ -15,14 +17,15 @@ const App = () => {
       <GNB />
       <Toaster />
       <div className={styles.app}>
-        <Routes>
-          <Route path='/' element={<Layout />}>
-            <Route path='' element={<Dummy />} />
-            <Route path=':category' element={<Dummy />} />
-            <Route path='cart' element={<Cart />} />
-          </Route>
-          <Route path='notFound' element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<Spinner />}>
+          <Routes>
+            <Route path='/' element={<Layout />}>
+              <Route path='category/:category' element={<Dummy />} />
+              <Route path='cart' element={<Cart />} />
+            </Route>
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </div>
     </div>
   )

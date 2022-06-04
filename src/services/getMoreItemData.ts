@@ -10,10 +10,9 @@ interface IProps {
 const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy'
 
 const getMoreItemData = async ({ pageParam, code, path }: IProps) => {
-  if (path !== undefined && code === null) {
-    return undefined
-  }
-  const prevAddr = code === null ? '/products' : `/categories/${code}/products`
+  if (code === null) return undefined
+
+  const prevAddr = path === 'all' && code !== null ? '/products' : `/categories/${code}/products`
   const response = await axios
     .get(`${PROXY}${prevAddr}?offset=${pageParam}&limit=20`)
     .then((res) => {

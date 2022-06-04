@@ -4,7 +4,10 @@ const NotFound = () => {
   return (
     <div className={styles.notFoundWrapper}>
       <h1>404</h1>
-      <p>uh-oh! Nothing Here...</p>
+      <p>
+        uh-oh! Nothing Here...
+        <br /> <span>👻</span>
+      </p>
     </div>
   )
 }

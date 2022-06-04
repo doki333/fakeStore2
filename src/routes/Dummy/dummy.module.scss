@@ -1,5 +1,11 @@
 @use '/src/styles/constants/colors';
 
+.mainSpinner {
+  z-index: 1001;
+  width: 100vh;
+  transform: translateX(0%);
+}
+
 .mainItemList {
   text-align: center;
 

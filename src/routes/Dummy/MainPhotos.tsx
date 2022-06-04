@@ -9,7 +9,7 @@ const DummyMain = () => {
 
   const handleClickShop = (e: MouseEvent<HTMLButtonElement>) => {
     const { category } = e.currentTarget.dataset
-    navigate(`/${category}`)
+    navigate(`/category/${category}`)
   }
 
   return (
@@ -39,15 +39,22 @@ const DummyMain = () => {
             <br />
             Light on price.
           </h1>
-          <button type='button' data-category='electronics' onClick={handleClickShop}>
-            Shop Now
-          </button>
         </div>
       </section>
       <section className={cx(styles.bgWrapper, styles.bg4)}>
         <div>
           <h1>Collection for Summer</h1>
           <button type='button' data-category='shoes' onClick={handleClickShop}>
+            Shop Now
+          </button>
+        </div>
+      </section>
+      <section className={cx(styles.bgWrapper, styles.bg5)}>
+        <div>
+          <h1>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda quisquam saepe, in dolorum debitis optio,
+          </h1>
+          <button type='button' data-category='all' onClick={handleClickShop}>
             Shop Now
           </button>
         </div>
