@@ -1,5 +1,5 @@
 [[redirects]]
-from = "/proxy/*"
+from = "https://main--fakestoredk.netlify.app/proxy/*"
   to = "https://api.escuelajs.co/api/v1"  
   status = 200
   force = true
