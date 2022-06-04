@@ -21,7 +21,7 @@ const handleClickItemAdd = (itemProps: IStoreData, itemCount: number, setCartLis
     return
   }
 
-  const storedItemIndex = getCartStorage.findIndex((item: ICartData) => item.key === itemProps.id)
+  const storedItemIndex = getCartStorage.findIndex((idxItem: ICartData) => idxItem.key === itemProps.id)
 
   if (storedItemIndex === -1) {
     setCartList(true)
@@ -29,8 +29,8 @@ const handleClickItemAdd = (itemProps: IStoreData, itemCount: number, setCartLis
     return
   }
 
-  const mappedData = getCartStorage.map((item: ICartData) =>
-    item.key === itemProps.id ? { ...item, count: item.count + itemCount } : { ...item }
+  const mappedData = getCartStorage.map((eachItems: ICartData) =>
+    eachItems.key === itemProps.id ? { ...eachItems, count: eachItems.count + itemCount } : { ...eachItems }
   )
 
   setCartList(true)

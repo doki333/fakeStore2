@@ -3,13 +3,16 @@ import EachItem from './ListItem/EachItem'
 import styles from './storeItemList.module.scss'
 
 interface IProps {
-  storeItemData: IStoreData[]
+  storedItem: IStoreData[]
 }
 
-const StoreItemList = ({ storeItemData }: IProps) => {
+const StoreItemList = ({ storedItem }: IProps) => {
   return (
     <ul className={styles.itemListWrapper}>
-      {storeItemData && storeItemData.map((item) => <EachItem key={`item-${item.id}`} itemProps={item} />)}
+      {storedItem &&
+        storedItem.map((inStoreListitem) => (
+          <EachItem key={`item-${inStoreListitem.id}`} itemProps={inStoreListitem} />
+        ))}
     </ul>
   )
 }
