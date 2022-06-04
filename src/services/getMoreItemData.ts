@@ -6,7 +6,9 @@ interface IProps {
   code: number | null
 }
 
-const PROXY = window.location.hostname === 'localhost' ? '/api/v1/products' : '/proxy/api/v1/products'
+const PROXY = window.location.hostname === 'localhost' ? '/products' : '/proxy/products'
+// eslint-disable-next-line no-console
+console.log(PROXY)
 
 const getMoreItemData = async ({ pageParam, code }: IProps) => {
   const prevAddr = code === null ? `${PROXY}` : `${PROXY}/categories/${code}`
