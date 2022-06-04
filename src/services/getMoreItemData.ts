@@ -6,15 +6,15 @@ interface IProps {
   code: number | null
 }
 
-const PROXY = window.location.hostname === 'localhost' ? '/products' : '/proxy/products'
-// eslint-disable-next-line no-console
-console.log(PROXY)
+const PROXY = window.location.hostname === 'localhost' ? '' : '/proxy'
 
 const getMoreItemData = async ({ pageParam, code }: IProps) => {
   const prevAddr = code === null ? `${PROXY}` : `${PROXY}/categories/${code}`
   const response = await axios
-    .get(`${prevAddr}?offset=${pageParam}&limit=20`)
+    .get(`${prevAddr}/products?offset=${pageParam}&limit=20`)
     .then((res) => {
+      // eslint-disable-next-line no-console
+      console.log(res)
       return res.data
     })
     .catch(() => {
