@@ -6,10 +6,10 @@ interface IProps {
   code: number | null
 }
 
-const PROXY = window.location.hostname === 'localhost' ? '/api/v1' : '/proxy'
+const PROXY = window.location.hostname === 'localhost' ? '/api/v1/' : '/proxy/'
 
 const getMoreItemData = async ({ pageParam, code }: IProps) => {
-  const prevAddr = code === null ? '' : `/categories/${code}/`
+  const prevAddr = code === null ? '' : `categories/${code}/`
   const response = await axios
     .get(`${PROXY}${prevAddr}products?offset=${pageParam}&limit=20`, {
       headers: {
