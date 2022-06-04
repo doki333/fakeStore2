@@ -8,7 +8,6 @@ interface IProps {
 
 const StoreItemList = ({ storedItem }: IProps) => {
   // eslint-disable-next-line no-console
-  console.log(storedItem)
   return (
     <ul className={styles.itemListWrapper}>
       {storedItem &&
