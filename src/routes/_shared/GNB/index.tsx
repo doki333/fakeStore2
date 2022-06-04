@@ -10,7 +10,7 @@ import { CartIcon, MenuIcon } from 'assets/svgs'
 import { cx } from 'styles'
 import styles from './gnb.module.scss'
 
-const linkList = ['clothes', 'electronics', 'furniture', 'shoes']
+const links = ['clothes', 'electronics', 'furniture', 'shoes']
 
 const GNB = () => {
   const navigate = useNavigate()
@@ -61,8 +61,8 @@ const GNB = () => {
         </button>
         <nav className={styles.navLinkWrapper}>
           <ul className={cx(styles.linkWrapper, { [styles.isNotVisible]: !isVisible })}>
-            {linkList.map((link) => (
-              <li key={`linkItem-${link}`}>
+            {links.map((link) => (
+              <li key={`links-${link}`}>
                 <NavLink
                   to={link}
                   className={({ isActive }) => (isActive ? styles.isActive : styles.linkBlock)}

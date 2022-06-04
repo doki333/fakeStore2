@@ -59,7 +59,7 @@ const Dummy = () => {
   }, [fetchNextPage, hasNextPage, inView])
 
   if (!data) return null
-
+  console.log(data)
   return (
     <>
       {isLoading && (

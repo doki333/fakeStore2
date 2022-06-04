@@ -10,17 +10,17 @@ import styles from './cartData.module.scss'
 interface IProps {
   cartItem: ICartData
   handleChange: ChangeEventHandler<HTMLInputElement>
-  setDataList: SetterOrUpdater<ICartData[]>
+  setStoredCart: SetterOrUpdater<ICartData[]>
 }
 
-const CartItem = ({ cartItem, handleChange, setDataList }: IProps) => {
+const CartItem = ({ cartItem, handleChange, setStoredCart }: IProps) => {
   const handleClickCountBtn = (e: MouseEvent<HTMLButtonElement>) => {
     let initialCount = 1
     const { id } = e.currentTarget.dataset
     if (id === 'minus') {
       initialCount = 1 * -1
     }
-    handleItemCount(cartItem, initialCount, setDataList)
+    handleItemCount(cartItem, initialCount, setStoredCart)
   }
 
   return (

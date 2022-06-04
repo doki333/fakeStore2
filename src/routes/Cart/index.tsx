@@ -16,41 +16,41 @@ const Cart = () => {
   const getSessionData = newStore.get('myFSCart') ?? []
   const isNothing = !getSessionData || getSessionData.length === 0
 
-  const [dataList, setDataList] = useState(getSessionData)
-  const totalCost = useMemo(() => getTotalCost(dataList), [dataList])
+  const [storedCart, setStoredCart] = useState(getSessionData)
+  const totalCost = useMemo(() => getTotalCost(storedCart), [storedCart])
   const shipping = totalCost !== 0 ? 20 : 0
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { id } = e.currentTarget.dataset
-    const newData = dataList.map((cartThing: ICartData) =>
+    const newData = storedCart.map((cartThing: ICartData) =>
       cartThing.key === Number(id) ? { ...cartThing, checked: !cartThing.checked } : { ...cartThing }
     )
-    setDataList(newData)
+    setStoredCart(newData)
     newStore.set('myFSCart', newData)
   }
 
   const handleClickDelete = () => {
-    const uncheckedData = dataList.filter((cart: ICartData) => cart.checked !== true)
-    setDataList(uncheckedData)
+    const uncheckedData = storedCart.filter((cart: ICartData) => cart.checked !== true)
+    setStoredCart(uncheckedData)
     newStore.set('myFSCart', uncheckedData)
   }
 
   return (
     <div className={styles.cartWrapper}>
       {isNothing && <p>Nothing! Add Something</p>}
-      {dataList && (
+      {storedCart && (
         <ul className={styles.cItemList}>
-          {dataList.map((cartItem: ICartData) => (
+          {storedCart.map((cartItem: ICartData) => (
             <CartItem
               key={`cart-${cartItem.key}`}
               cartItem={cartItem}
               handleChange={handleChange}
-              setDataList={setDataList}
+              setStoredCart={setStoredCart}
             />
           ))}
         </ul>
       )}
-      {dataList.length !== 0 && (
+      {storedCart.length !== 0 && (
         <>
           <ul className={styles.costBottom}>
             <dl>

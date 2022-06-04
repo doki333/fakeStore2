@@ -7,6 +7,7 @@ interface IProps {
 }
 
 const StoreItemList = ({ storedItem }: IProps) => {
+  console.log(storedItem)
   return (
     <ul className={styles.itemListWrapper}>
       {storedItem &&
