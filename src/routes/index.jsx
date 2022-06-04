@@ -15,10 +15,10 @@ const App = () => {
       <Toaster />
       <div className={styles.app}>
         <Routes>
-          <Route path='/' element={<Layout />}>
+          <Route path='' element={<Layout />}>
             <Route path='/' element={<Dummy />} />
-            <Route path=':category' element={<Dummy />} />
-            <Route path='/cart' element={<Cart />} />
+            {/* <Route path='/:category' element={<Dummy />} /> */}
+            <Route path='cart' element={<Cart />} />
           </Route>
         </Routes>
       </div>

@@ -43,6 +43,7 @@ const Dummy = () => {
       retry: 1,
       refetchOnWindowFocus: false,
       refetchOnMount: false,
+      cacheTime: 0,
     }
   )
 
@@ -58,7 +59,6 @@ const Dummy = () => {
     }
   }, [fetchNextPage, hasNextPage, inView])
 
-  if (!data) return null
   return (
     <>
       {isLoading && (
