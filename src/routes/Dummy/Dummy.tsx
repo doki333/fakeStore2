@@ -10,7 +10,6 @@ import getMoreItemData from 'services/getMoreItemData'
 import { IStoreData, ICateData } from 'types/ListItem'
 
 import styles from './dummy.module.scss'
-import NotFound from 'routes/NotFound/NotFound'
 
 const categoryCode: ICateData = {
   clothes: 1,
@@ -60,14 +59,12 @@ const Dummy = () => {
     if (inView && hasNextPage) {
       fetchNextPage()
     }
-  }, [category, fetchNextPage, hasNextPage, inView, navigate])
-
-  if (!data && cateId === null) return <NotFound />
+    if (data && cateId === null) navigate('/notFound')
+  }, [cateId, category, data, fetchNextPage, hasNextPage, inView, navigate])
 
   return (
     <>
       <div className={styles.mainItemList}>
-        {!cateId && <h1>All Products</h1>}
         <h1>{category}</h1>
         {data &&
           data.pages.map((initialItems, index) => {
