@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 
@@ -16,25 +16,24 @@ const GNB = () => {
   const navigate = useNavigate()
   const [cartStatus, setCartStatus] = useRecoilState(cartItemState)
 
-  const currentStatus = window.innerWidth < 600
-
-  const [isMobile, setIsMobile] = useState(currentStatus)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 600)
   const [isVisible, setIsVisible] = useState(false)
 
   const handleClickMenu = () => {
     setIsVisible((prev) => !prev)
   }
 
-  const resizeWindow = () => {
-    if (window.innerWidth < 600) {
-      setIsMobile(true)
-      return
-    }
-    setIsMobile(false)
-  }
+  const resizeWindow = useCallback(() => {
+    setIsMobile(() => window.innerWidth < 600)
+  }, [])
 
   const handleClickCart = () => {
     navigate('/cart')
+    setIsVisible(false)
+  }
+
+  const handleClickBtn = () => {
+    navigate('/')
     setIsVisible(false)
   }
 
@@ -45,12 +44,7 @@ const GNB = () => {
     }
     window.addEventListener('resize', resizeWindow)
     return () => window.removeEventListener('resize', resizeWindow)
-  }, [setCartStatus])
-
-  const handleClickBtn = () => {
-    navigate('/')
-    setIsVisible(false)
-  }
+  }, [setCartStatus, resizeWindow])
 
   return (
     <aside className={styles.gnb}>

@@ -1,0 +1,168 @@
+@use '/src/styles/mixins/position';
+@use '/src/styles/constants/colors';
+@use '/src/styles/mixins/responsive';
+
+.modalWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 50%);
+
+  .modalInner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 80%;
+    height: 500px;
+    background: colors.$WHITE;
+    transform: translate(-50%, -50%);
+
+    .modalInfoWrapper {
+      padding: 20px;
+
+      ul {
+        height: 40%;
+        margin-bottom: 10px;
+        font-size: 20px;
+
+        dl:nth-of-type(1) {
+          display: block;
+          margin-bottom: 15px;
+
+          dd {
+            font-size: 26px;
+            font-weight: 700;
+          }
+
+          dt {
+            display: none;
+          }
+        }
+
+        dl {
+          + dl {
+            margin-bottom: 5px;
+          }
+
+          dd,
+          dt {
+            display: inline;
+          }
+
+          dt {
+            margin-right: 10px;
+          }
+
+          &:last-child {
+            word-break: break-all;
+          }
+        }
+      }
+
+      .infoBottom {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        height: 50%;
+        margin-top: 50px;
+
+        svg {
+          width: 25px;
+          height: 25px;
+        }
+
+        input {
+          width: 50px;
+          height: 30px;
+          text-align: center;
+          background: colors.$WHITE;
+        }
+
+        table {
+          width: 100%;
+          font-size: 18px;
+          text-align: center;
+
+          thead {
+            height: 30px;
+            line-height: 30px;
+            background: colors.$GRAYE;
+          }
+
+          tbody {
+            min-height: 50px;
+            line-height: 50px;
+
+            td {
+              min-width: 50px;
+            }
+
+            button {
+              text-transform: uppercase;
+              vertical-align: middle;
+            }
+          }
+        }
+
+        .bottomBtns {
+          width: 100%;
+          background: colors.$GRAYE;
+
+          button {
+            width: 50%;
+            padding: 10px;
+            font-size: 18px;
+
+            &:first-child {
+              background: colors.$FS_MAIN_YELLOW;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include responsive.between(M, ML) {
+    .modalInner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      grid-template-columns: auto;
+      width: 100%;
+      height: 100vh;
+      padding-bottom: 30px;
+      overflow-y: scroll;
+      background: white;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  @include responsive.between(ML, MD) {
+    .modalInner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      z-index: 0;
+      display: grid;
+      grid-template-rows: 500px 1fr;
+      width: 80%;
+      height: 100vh;
+      padding-bottom: 30px;
+      overflow-y: scroll;
+      background: colors.$WHITE;
+      transform: translate(-50%, -50%);
+
+      .modalInfoWrapper {
+        grid-row: 2 / 2;
+        grid-column: 1 / 1;
+      }
+    }
+  }
+}

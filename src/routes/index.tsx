@@ -22,8 +22,8 @@ const App = () => {
             <Route path='/' element={<Layout />}>
               <Route path='category/:category' element={<Dummy />} />
               <Route path='cart' element={<Cart />} />
+              <Route path='*' element={<NotFound />} />
             </Route>
-            <Route path='*' element={<NotFound />} />
           </Routes>
         </Suspense>
       </div>
