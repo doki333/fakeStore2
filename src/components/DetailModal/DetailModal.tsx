@@ -23,7 +23,7 @@ const DetailModal = ({ handleModalShow, handleClickAdd, handleClickClose, handle
   const modalRef = useRef(null)
   const dataArr = selectedItem && [
     { key: 'Title:', content: selectedItem.title },
-    { key: 'Price:', content: selectedItem.price },
+    { key: 'Price:', content: `$${selectedItem.price}` },
     { key: 'Category:', content: selectedItem.category.name },
     { key: 'Description:', content: selectedItem.description },
   ]
