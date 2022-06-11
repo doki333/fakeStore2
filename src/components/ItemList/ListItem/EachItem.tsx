@@ -2,13 +2,14 @@ import { MouseEvent, useState } from 'react'
 import { useSetRecoilState } from 'recoil'
 import toast from 'react-hot-toast'
 
-import { cartItemState } from 'recoil/cart.atom'
+import { cartItemState, selectedModalItem } from 'recoil/cart.atom'
 import { IStoreData } from 'types/ListItem'
 import handleClickItemAdd from './setCartStorage'
 import PLACEHOLDER from 'assets/no-image.jpg'
-import { Minus2Icon, Plus2Icon } from 'assets/svgs'
+// import { Minus2Icon, Plus2Icon } from 'assets/svgs'
 
 import styles from './eachItem.module.scss'
+import Portal from 'components/DetailModal/Portal'
 
 interface IProps {
   itemProps: IStoreData
@@ -16,6 +17,7 @@ interface IProps {
 
 const EachItem = ({ itemProps }: IProps) => {
   const setCartList = useSetRecoilState(cartItemState)
+  const setSelected = useSetRecoilState(selectedModalItem)
 
   const [isVisible, setIsVisible] = useState(false)
   const [count, setCount] = useState(1)
@@ -31,6 +33,7 @@ const EachItem = ({ itemProps }: IProps) => {
 
   const handleModalShow = () => {
     setIsVisible((prev) => !prev)
+    setSelected(itemProps)
   }
 
   const handleClickClose = () => {
@@ -38,9 +41,9 @@ const EachItem = ({ itemProps }: IProps) => {
     setCount(1)
   }
   const handleClickCount = (e: MouseEvent<HTMLButtonElement>) => {
-    const { id } = e.currentTarget.dataset
-    if (id === 'minus' && count === 1) return
-    if (id === 'plus') {
+    const { keyword } = e.currentTarget.dataset
+    if (keyword === 'minus' && count === 1) return
+    if (keyword === 'plus') {
       setCount((prev) => prev + 1)
       return
     }
@@ -64,29 +67,13 @@ const EachItem = ({ itemProps }: IProps) => {
         ADD TO CART
       </button>
       {isVisible && (
-        <div className={styles.countModal}>
-          <div className={styles.countBlock}>
-            <button className={styles.countBtn} type='button' data-id='minus' onClick={handleClickCount}>
-              <Minus2Icon />
-            </button>
-            <input type='number' readOnly value={count} />
-            <button className={styles.countBtn} type='button' data-id='plus' onClick={handleClickCount}>
-              <Plus2Icon />
-            </button>
-          </div>
-          <div className={styles.costBlock}>
-            <label htmlFor='totalCost'>Total</label>
-            <input id='totalCost' type='number' readOnly value={count * itemProps.price} />
-          </div>
-          <div className={styles.bottomBtns}>
-            <button type='button' onClick={handleClickAdd}>
-              ADD
-            </button>
-            <button type='button' onClick={handleClickClose}>
-              CLOSE
-            </button>
-          </div>
-        </div>
+        <Portal
+          handleModalShow={handleModalShow}
+          handleClickAdd={handleClickAdd}
+          handleClickClose={handleClickClose}
+          handleClickCount={handleClickCount}
+          count={count}
+        />
       )}
     </li>
   )
