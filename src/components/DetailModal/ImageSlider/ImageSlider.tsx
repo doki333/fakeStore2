@@ -21,7 +21,7 @@ const ImageSlider = () => {
           const keyIdx = `picture-${index}`
           return (
             <div key={keyIdx} className={styles.carouselInner}>
-              <img src={picture} alt='item' />
+              <img src={picture} alt={selectedItem.title} title={selectedItem.title} />
             </div>
           )
         })}
