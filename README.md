@@ -24,6 +24,9 @@
 ├─assets
 │  └─svgs
 ├─components
+│  ├─DataList
+│  ├─DetailModal
+│  │  └─ImageSlider
 │  ├─ItemList
 │  │  └─ListItem
 │  ├─Layout
@@ -53,6 +56,7 @@
 - classnames : 조건부 클래스 네임 설정   
 - react-intersection-observer : infinite scroll 구현
 - store : sessionStorage를 이용한 장바구니 기능    
+- react-slick : 상품 사진들을 보기 위한 carousel 구현   
 
 
 ### 기능 상세   
@@ -75,7 +79,9 @@ store에 sessionStorage engine을 추가하여, 장바구니에 추가한 목록
 ![cart](https://user-images.githubusercontent.com/88841429/171993973-f82d2017-6a2e-48b6-85eb-becbb2830406.gif)
 장바구니에서 수량 조절을 할 수 있게 하였고, 삭제버튼을 누를 경우 체크된 상품을 삭제하고, 다시 sessionStorage에 저장하도록 하였습니다.
 
+(+ 220612 : 상품에 대한 description과 사진들을 더 많이 볼 수 있는 모달을 만들었습니다. 사진들은 react-slick을 이용하여 carousel로 만들어주었습니다. category가 없거나, 다른 url로 접근 시 404 page로 리다이렉트 되도록 하였습니다. 또한 쇼핑카트에서 전체 아이템을 선택할 수 있는 체크박스를 만들고, 특정 아이템을 지우고 난 후에 남은 아이템들이 체크되어 있지 않았던 디테일을 수정하였습니다. )
+
 ### 아쉬운 점 및 추후 수정하고 싶은 점   
- 디자인 감각이 많이 부족하다는 것을 다시 한번 느꼈고, netlify 오류를 다루는데 시간이 많이 걸려서 디테일한 부분을 다듬지 못한 것이 아쉽습니다. 이 후에 디자인 및 색감을 통일하고 404 page를 커스텀해서 netlify에서도 잘 작동되게 하고 싶습니다.
+ 디자인 감각이 많이 부족하다는 것을 다시 한번 느꼈고, netlify 오류를 다루는데 시간이 많이 걸려서 디테일한 부분을 다듬지 못한 것이 아쉽습니다. 이 후에 디자인 및 색감을 좀 더 발전시키고 싶습니다.
 
 
