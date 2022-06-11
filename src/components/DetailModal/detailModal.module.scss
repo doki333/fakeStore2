@@ -100,8 +100,11 @@
             min-height: 50px;
             line-height: 50px;
 
-            td {
-              min-width: 50px;
+            td:first-child {
+              max-width: 140px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
             }
 
             button {
