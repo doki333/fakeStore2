@@ -28,3 +28,8 @@ export interface ICartData {
   price: number
   checked: boolean
 }
+
+export interface IUListData {
+  key: string
+  content: string | number
+}

@@ -1,11 +1,14 @@
 import { ChangeEvent, useMemo, useState } from 'react'
+import { useSetRecoilState } from 'recoil'
 
 import CartItem from './CartData'
+import { cartItemState } from 'recoil/cart.atom'
 import { newStore } from 'services/sessionStore'
 import { ICartData } from 'types/ListItem'
-import { TrashIcon } from 'assets/svgs'
+import { CheckIcon, TrashIcon } from 'assets/svgs'
 
 import styles from './cart.module.scss'
+import DataList from 'components/DataList/DataList'
 
 function getTotalCost(d: ICartData[]) {
   const checkedData = d.filter((data: ICartData) => data.checked === true)
@@ -16,7 +19,10 @@ const Cart = () => {
   const getSessionData = newStore.get('myFSCart') ?? []
   const isNothing = !getSessionData || getSessionData.length === 0
 
+  const setCartItemStatus = useSetRecoilState(cartItemState)
   const [storedCart, setStoredCart] = useState(getSessionData)
+  const [isWholeChecked, setIsWholeChecked] = useState(true)
+
   const totalCost = useMemo(() => getTotalCost(storedCart), [storedCart])
   const shipping = totalCost !== 0 ? 20 : 0
 
@@ -26,46 +32,61 @@ const Cart = () => {
       cartThing.key === Number(id) ? { ...cartThing, checked: !cartThing.checked } : { ...cartThing }
     )
     setStoredCart(newData)
-    newStore.set('myFSCart', newData)
   }
 
   const handleClickDelete = () => {
     const uncheckedData = storedCart.filter((cart: ICartData) => cart.checked !== true)
-    setStoredCart(uncheckedData)
-    newStore.set('myFSCart', uncheckedData)
+    const newCheck = uncheckedData.map((toCheck: ICartData) => {
+      return {
+        ...toCheck,
+        checked: true,
+      }
+    })
+    setStoredCart(newCheck)
+    newStore.set('myFSCart', newCheck)
+    if (!isNothing) setCartItemStatus(false)
   }
+
+  const handleWholeCheckBox = () => {
+    setIsWholeChecked((prev) => !prev)
+    const wholeCheck = storedCart.map((toCheck: ICartData) => {
+      return {
+        ...toCheck,
+        checked: !isWholeChecked,
+      }
+    })
+    setStoredCart(wholeCheck)
+  }
+
+  const idxDataArr = [
+    { key: 'Sub Total', content: `${totalCost.toLocaleString()}.00` },
+    { key: 'Shipping', content: `$${shipping}.00` },
+    { key: 'Total', content: `${(totalCost + shipping).toLocaleString()}.00` },
+  ]
 
   return (
     <div className={styles.cartWrapper}>
       {isNothing && <p>Nothing! Add Something</p>}
-      {storedCart && (
-        <ul className={styles.cItemList}>
-          {storedCart.map((cartItem: ICartData) => (
-            <CartItem
-              key={`cart-${cartItem.key}`}
-              cartItem={cartItem}
-              handleChange={handleChange}
-              setStoredCart={setStoredCart}
-            />
-          ))}
-        </ul>
-      )}
-      {storedCart.length !== 0 && (
+      {!isNothing && (
         <>
-          <ul className={styles.costBottom}>
-            <dl>
-              <dt>Sub Total</dt>
-              <dd>${totalCost.toLocaleString()}.00</dd>
-            </dl>
-            <dl>
-              <dt>Shipping</dt>
-              <dd>${shipping}.00</dd>
-            </dl>
-            <dl>
-              <dt>Total</dt>
-              <dd>${(totalCost + shipping).toLocaleString()}.00</dd>
-            </dl>
+          <ul className={styles.cItemList}>
+            <div className={styles.ctrlWrapper}>
+              <input id='checkBoxCtrl' type='checkbox' checked={isWholeChecked} onChange={handleWholeCheckBox} />
+              <label htmlFor='checkBoxCtrl'>
+                <CheckIcon />
+              </label>
+              All
+            </div>
+            {storedCart.map((cartItem: ICartData) => (
+              <CartItem
+                key={`cart-${cartItem.key}`}
+                cartItem={cartItem}
+                handleChange={handleChange}
+                setStoredCart={setStoredCart}
+              />
+            ))}
           </ul>
+          {idxDataArr && <DataList dataArr={idxDataArr} classTitle='costBottom' />}
           <div className={styles.cartBottomBtns}>
             <button type='button' onClick={handleClickDelete}>
               <TrashIcon />

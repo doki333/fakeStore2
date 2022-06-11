@@ -8,6 +8,7 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import { Minus2Icon, Plus2Icon } from 'assets/svgs'
 import ImageSlider from './ImageSlider/ImageSlider'
+import DataList from 'components/DataList/DataList'
 
 interface IModalProps {
   handleModalShow: () => void
@@ -20,6 +21,12 @@ interface IModalProps {
 const DetailModal = ({ handleModalShow, handleClickAdd, handleClickClose, handleClickCount, count }: IModalProps) => {
   const selectedItem = useRecoilValue(selectedModalItem)
   const modalRef = useRef(null)
+  const dataArr = selectedItem && [
+    { key: 'Title:', content: selectedItem.title },
+    { key: 'Price:', content: selectedItem.price },
+    { key: 'Category:', content: selectedItem.category.name },
+    { key: 'Description:', content: selectedItem.description },
+  ]
 
   useOnClickOutside(modalRef, handleModalShow)
 
@@ -29,24 +36,7 @@ const DetailModal = ({ handleModalShow, handleClickAdd, handleClickClose, handle
       <div className={styles.modalInner} ref={modalRef}>
         {selectedItem && <ImageSlider />}
         <div className={styles.modalInfoWrapper}>
-          <ul>
-            <dl>
-              <dt>Title: </dt>
-              <dd>{selectedItem.title}</dd>
-            </dl>
-            <dl>
-              <dt>Price: </dt>
-              <dd>${selectedItem.price}</dd>
-            </dl>
-            <dl>
-              <dt>Category: </dt>
-              <dd>{selectedItem.category.name}</dd>
-            </dl>
-            <dl>
-              <dt>Description: </dt>
-              <dd>{selectedItem.description}</dd>
-            </dl>
-          </ul>
+          {dataArr && <DataList dataArr={dataArr} />}
           <div className={styles.infoBottom}>
             <table>
               <thead>
