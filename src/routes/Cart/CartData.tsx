@@ -4,7 +4,7 @@ import { SetterOrUpdater } from 'recoil'
 import { ICartData } from 'types/ListItem'
 import PLACEHOLDER from 'assets/no-image.jpg'
 import { CheckIcon, Minus2Icon, Plus2Icon } from 'assets/svgs'
-import handleItemCount from './cartItemCount'
+import { handleItemCount } from './cartItemCount'
 import styles from './cartData.module.scss'
 
 interface IProps {

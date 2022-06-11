@@ -9,11 +9,7 @@ import { CheckIcon, TrashIcon } from 'assets/svgs'
 
 import styles from './cart.module.scss'
 import DataList from 'components/DataList/DataList'
-
-function getTotalCost(d: ICartData[]) {
-  const checkedData = d.filter((data: ICartData) => data.checked === true)
-  return checkedData.reduce((prev: number, next: ICartData) => prev + next.count * next.price, 0)
-}
+import { getTotalCost } from './cartItemCount'
 
 const Cart = () => {
   const getSessionData = newStore.get('myFSCart') ?? []
@@ -32,6 +28,8 @@ const Cart = () => {
       cartThing.key === Number(id) ? { ...cartThing, checked: !cartThing.checked } : { ...cartThing }
     )
     setStoredCart(newData)
+    const filteredData = newData.filter((cartThing: ICartData) => cartThing.checked === true)
+    setIsWholeChecked(() => filteredData.length === storedCart.length)
   }
 
   const handleClickDelete = () => {
@@ -44,6 +42,7 @@ const Cart = () => {
     })
     setStoredCart(newCheck)
     newStore.set('myFSCart', newCheck)
+    setIsWholeChecked(true)
     if (!isNothing) setCartItemStatus(false)
   }
 

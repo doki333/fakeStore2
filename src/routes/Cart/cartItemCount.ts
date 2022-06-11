@@ -3,7 +3,7 @@ import { SetterOrUpdater } from 'recoil'
 import { newStore } from 'services/sessionStore'
 import { ICartData } from 'types/ListItem'
 
-const handleItemCount = (itemProps: ICartData, itemCount: number, setCartList: SetterOrUpdater<ICartData[]>) => {
+export const handleItemCount = (itemProps: ICartData, itemCount: number, setCartList: SetterOrUpdater<ICartData[]>) => {
   if (itemProps.count + itemCount === 0) return
   const getCartStorage = newStore.get('myFSCart')
 
@@ -14,4 +14,7 @@ const handleItemCount = (itemProps: ICartData, itemCount: number, setCartList: S
   newStore.set('myFSCart', [...mappedData])
 }
 
-export default handleItemCount
+export function getTotalCost(d: ICartData[]) {
+  const checkedData = d.filter((data: ICartData) => data.checked === true)
+  return checkedData.reduce((prev: number, next: ICartData) => prev + next.count * next.price, 0)
+}
